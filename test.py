@@ -1,2 +1,3 @@
 print("hello, world")
-print("hello, BETSEBA!")
+c = "hello, BETSEBA!"
+print(c)
