@@ -1,3 +1,3 @@
-print("hello, world")
+print("hello, wold")
 c = "hello, BETSEBA!"
 print(c)
