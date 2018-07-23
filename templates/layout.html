@@ -1,0 +1,16 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+    <head>
+        <!-- App's own CSS -->
+        <link href="/static/styles.css" rel="stylesheet"/>
+        <!--bootstrap-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+        <title>{%block title %}{%endblock%}</title>
+    </head>
+<body>
+    <div class="container-fluid bg-dark">
+        {%block head%}{%endblock%}
+    </div>
+    {%block body %}{%endblock%}
+</body>
+</html>

@@ -1,13 +1,12 @@
-<!DOCKTYPE html>
-<html>
-<head>
-    <title>login</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block title %}
+login
+{%endblock%}
+{%block body%}
     retry!
     <div>
             <form action="/login">
                 <button type="submit">retry</button>
             </form>
         </div>
-</body>
+{%endblock%}

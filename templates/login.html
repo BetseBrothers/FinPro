@@ -1,16 +1,18 @@
-<!DOCKTYPE html>
-<html>
-<head>
-    <title>login</title>
-</head>
-<body>
-    login:
+{% extends "layout.html" %}
+{% block title %}
+login
+{%endblock%}
+{%block head%}
+<h1 class="text-center text-white">Log in</h1>
+{%endblock%}
+{%block body%}
     <div>
-        <form action="/login" method="post">
-            <input autocomplete="off" autofocus name="username" placeholder="Username" type="text"/>
-            <input name="password" placeholder="Password" type="password"/>
-            <button type="submit">login</button>
+        <form action="/login" method="post" class="center-block">
+        <div class="container">
+            <input autocomplete="off" autofocus name="username" placeholder="Username" type="text" class="form-control"/>
+            <input name="password" placeholder="Password" type="password" class="form-control"/>
+            <button type="submit" class="form-control">login</button>
+        </div>
         </form>
     </div>
-</body>
-</html>
+{%endblock%}
