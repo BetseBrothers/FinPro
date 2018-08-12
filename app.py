@@ -9,7 +9,7 @@ app.secret_key = b'3RT6HJ8L'
 @login_required
 def test():
     db = db_connect('pythonsqlite.db')
-    return render_template("test.html")
+    return render_template("input.html")
 
 @app.route("/login", methods=["POST","GET"])
 def login():
