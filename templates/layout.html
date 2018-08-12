@@ -1,16 +1,21 @@
 <!DOCTYPE <!DOCTYPE html>
 <html>
     <head>
-        <!-- App's own CSS -->
-        <link href="/static/styles.css" rel="stylesheet"/>
         <!--bootstrap-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+        <!-- App's own CSS -->
+        <link href="/static/styles.css" rel="stylesheet"/>
+        <script src="/static/script.js"></script>
         <title>{%block title %}{%endblock%}</title>
+        
     </head>
 <body>
-    <div class="container-fluid bg-dark">
+    <div class="container-fluid bg-secondary">
         {%block head%}{%endblock%}
+        <div id="timestamp" class="text-center text-white"></div>
     </div>
     {%block body %}{%endblock%}
+    <!-- App's own javascript(must be at bottom)-->
+    <script src="/static/script.js"></script>
 </body>
 </html>
