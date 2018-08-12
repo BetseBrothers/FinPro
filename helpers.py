@@ -1,5 +1,10 @@
 from flask import redirect, session
 from functools import wraps
+import sqlite3
+
+def db_connect(string):
+    conn = sqlite3.connect(string)
+    return conn.cursor()
 def login_required(f):
     """
     Decorate routes to require login.
