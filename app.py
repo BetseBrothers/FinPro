@@ -1,6 +1,11 @@
 from flask import Flask, render_template, request, session, redirect
 from helpers import login_required, db_connect
 
+from tempfile import mkdtemp
+from werkzeug.exceptions import default_exceptions
+from werkzeug.security import check_password_hash, generate_password_hash
+from numbers import Number
+import sqlite3
 
 app = Flask(__name__)
 # totaal random
@@ -20,14 +25,44 @@ def login():
         # check for complete form better in JS
         if not request.form.get("username") or not request.form.get("password"):
             return render_template("retry.html")
-        # set vars for shorter lines
-        username = request.form.get("username")
-        password = request.form.get("password")
-        db.execute("SELECT * FROM users WHERE username='%s'" % username)
-        row = db.fetchone()
-        # check for valid username and password
-        if row and row[2] == password:
-            session["user_id"] = request.form.get("username")# need to change
-            return redirect("/")
-        else:
-            return render_template("retry.html")# should be incorrect username or password
+        rows = db.execute("SELECT * FROM users WHERE username = ?",
+                          request.form.get("username"))
+        # Ensure username exists and password is correct
+        row = rows.fetchone()
+        if not row or not check_password_hash(row[2], request.form.get("password")):
+            return render_template("retry.html")
+
+        # Remember which user has logged in
+        session["user_id"] = request.form.get("username")
+
+        # Redirect user to home page
+        return redirect("/")
+
+@app.route("/register", methods=["POST","GET"])
+def register():
+    conn = sqlite3.connect('pythonsqlite.db')
+    db = conn.cursor()
+    if request.method == "GET":
+        return render_template("register.html")
+    elif request.method == "POST":
+        # check for complete form better in JS
+        if not request.form.get("username") or not request.form.get("password"):
+            return render_template("retry.html")
+        elif not request.form.get("password") == request.form.get("confirmation"):
+            return render_template("retry.html")
+        # Generate hash
+        hash = generate_password_hash(request.form.get("password"))
+
+        # Insert user into database
+        rows = db.execute("INSERT INTO users (username, hash) VALUES(?,?)",
+                          (request.form.get("username"), hash))
+        # commit changes
+        conn.commit()
+        if not rows:
+            return render_template("retry.html")
+
+        # Remember which user has logged in
+        session["user_id"] = request.form.get("username")
+
+        # Redirect user to home page
+        return redirect("/")

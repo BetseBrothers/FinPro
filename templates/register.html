@@ -7,16 +7,12 @@ login
 {%endblock%}
 {%block body%}
     <div>
-        <form action="/login" method="post" class="center-block">
+        <form action="/register" method="post" class="center-block">
         <div class="container">
             <input autocomplete="off" autofocus name="username" placeholder="Username" type="text" class="form-control"/>
             <input name="password" placeholder="Password" type="password" class="form-control"/>
-            <button type="submit" class="form-control">login</button>
-        </div>
-    </form>
-        <form action="/register" method="get" class="center-block"></form>
-        <div class="container">
-            <a href="/register">register now!</a>
+            <input name="confirmation" placeholder="Confirm Password" type="password" class="form-control"/>
+            <button type="submit" class="form-control">register</button>
         </div>
         </form>
     </div>
