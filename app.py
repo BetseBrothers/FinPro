@@ -10,11 +10,16 @@ import sqlite3
 app = Flask(__name__)
 # totaal random
 app.secret_key = b'3RT6HJ8L'
+
 @app.route("/")
 @login_required
 def test():
-    db = db_connect('pythonsqlite.db')
     return render_template("input.html")
+
+@app.route("/rekening")
+@login_required
+def rekening():
+    return render_template("rekening.html")
 
 @app.route("/login", methods=["POST","GET"])
 def login():

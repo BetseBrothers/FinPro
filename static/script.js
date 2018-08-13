@@ -3,3 +3,5 @@ setInterval(function(){
     var timestamp = time.toLocaleTimeString();
     document.getElementById('timestamp').innerHTML = timestamp
 }, 1000);
+
+//document.getElementb().onsubmit = function(){

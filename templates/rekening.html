@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}
+open rekening
+{%endblock%}
+{%block head%}
+<h1 class="text-center text-white">Open rekening</h1>
+{%endblock%}
+{%block body%}
+<div class="container">
+<form action="/rekening" method="post" class="center-block" id="form">
+    <input autocomplete="off" autofocus name="naam" placeholder="naam van rekening" type="text" class="form-control"/>
+    <button type="submit" class="form-control">open rekening</button>
+</form>
+</div>
+{%endblock%}

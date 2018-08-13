@@ -1,14 +1,28 @@
 {% extends "layout.html" %}
 {% block title %}
-login
+input
 {%endblock%}
 {%block body%}
         <div>
-        <form action="/" method="post" class="center-block">
         <div class="container">
-                <input autocomplete="off" autofocus name="test" placeholder="test" type="text" class="form-control"/>
-                <button type="submit" class="form-control">submit</button>
+                <form action="/rekening" method="get" class="center-block">
+                <button type="submit" class="form-control">open rekening</button>
+                </form>
+                <form action="/" method="get" class="center-block">
+                <button type="submit" class="form-control">verander balans</button>
+                </form>
+                <form action="/" method="get" class="center-block">
+                <button type="submit" class="form-control">smekkels</button>
+                </form>
+                <form action="/" method="get" class="center-block">
+                <button type="submit" class="form-control">smokkels</button>
+                </form>
+                <form action="/" method="get" class="center-block">
+                <button type="submit" class="form-control">aandelen</button>
+                </form>
+                <form action="/" method="get" class="center-block">
+                <button type="submit" class="form-control">leningen</button>
+                </form>
         </div>
-        </form>
         </div>
 {%endblock%}
