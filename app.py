@@ -20,10 +20,21 @@ def test():
     rekeningen = rows.fetchall()
     return render_template("input.html", rekeningen=rekeningen)
 
-@app.route("/rekening")
+@app.route("/rekening", methods=["POST","GET"])
 @login_required
 def rekening():
-    return render_template("rekening.html")
+    if request.method == "POST":
+        conn = sqlite3.connect('pythonsqlite.db')
+        db = conn.cursor()
+        # Insert rekening into database
+        db.execute("INSERT INTO rekeningen (userid, balans, rekeningnaam) VALUES(?,0,?)",
+                          (session["user_id"], request.form.get("naam")))
+        # commit changes
+        conn.commit()
+        
+        return render_template("rekening.html")
+    else:
+        return render_template("rekening.html")
 
 @app.route("/login", methods=["POST","GET"])
 def login():
