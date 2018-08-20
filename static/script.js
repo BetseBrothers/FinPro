@@ -1,8 +1,9 @@
-setInterval(function(){
+/*setInterval(function(){
     var time = new Date();
     var timestamp = time.toLocaleTimeString();
     document.getElementById('timestamp').innerHTML = timestamp
 }, 1000);
+*/
 
 function isEmpty(){
     for (i = 0; i < document.getElementById("form").children.length - 1; i++)
