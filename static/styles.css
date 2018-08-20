@@ -23,7 +23,7 @@ body {
   }
   
   .scrolling-wrapper, .scrolling-wrapper-flexbox {
-    height: 75px;
+    height: 50px;
     width: 100%;
     -webkit-overflow-scrolling: auto;
   }
