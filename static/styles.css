@@ -16,12 +16,23 @@ body {
     }
   
   .card {
-    border: 1px solid white;
+    border: 1px solid rgb(0, 0, 0);
     width: 50px;
     height: 50px;
-    background: rgb(143, 138, 187);
   }
-  
+  .card:hover {
+    background-color: rgb(68, 82, 122);
+}
+.cardmain {
+    width: 50px;
+    height: 50px;
+  }
+.card2 {background-color: rgb(243, 255, 80);} /* Blue */
+.card3 {background-color: rgb(47, 203, 255);} /* Blue */
+.card4 {background-color: rgb(66, 255, 129);} /* Blue */
+.card5 {background-color: rgb(66, 255, 129);} /* Blue */
+.card6 {background-color: rgb(255, 41, 51);} /* Blue */
+
   .scrolling-wrapper, .scrolling-wrapper-flexbox {
     height: 50px;
     width: 100%;
