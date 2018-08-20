@@ -11,10 +11,14 @@ app = Flask(__name__)
 # totaal random
 app.secret_key = b'3RT6HJ8L'
 
-@app.route("/")
+@app.route("/", methods=["POST","GET"])
 @login_required
 def test():
-    return render_template("input.html")
+    db = db_connect('pythonsqlite.db')
+    rows = db.execute("SELECT * FROM rekeningen WHERE userid = ? ",
+                        (session["user_id"],))
+    rekeningen = rows.fetchall()
+    return render_template("input.html", rekeningen=rekeningen)
 
 @app.route("/rekening")
 @login_required
@@ -82,6 +86,7 @@ def home():
                           (session["user_id"],))
     rowb = rowsb.fetchall()
     balans = 0
+    schmekkels = 0
     for row in rowb:
         if not row[2] == "smekkels":
             balans += row[1]
@@ -96,7 +101,6 @@ def balans():
                           (session["user_id"],))
     rowb = rowsb.fetchall()
     balans = 0
-    schmekkels = 0
     for row in rowb:
         if not row[2] == "smekkels":
             balans += row[1]
