@@ -1,3 +1,26 @@
 body {
     background: #393939 !important;
+
 }
+.scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+    .card {
+      flex: 0 0 auto;
+      margin-right: 3px;
+    }
+  
+  .card {
+    border: 1px solid white;
+    width: 150px;
+    height: 50px;
+    background: black;
+  }
+  
+  .scrolling-wrapper, .scrolling-wrapper-flexbox {
+    height: 75px;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
