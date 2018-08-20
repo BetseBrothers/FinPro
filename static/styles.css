@@ -43,3 +43,15 @@ body {
   ::-webkit-scrollbar { 
     display: none; 
 }
+.preview {
+  flex-wrap: nowrap;
+  height: 80px;
+  margin-top: 5px;
+  padding: 15px;
+}
+.full {
+  width: 100%
+}
+.tillend {
+  width: 90%
+}

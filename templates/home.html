@@ -1,36 +1,39 @@
-{% extends "layout.html" %}
-{% block title %}
-Home
-{%endblock%}
-{%block head%}
-{%endblock%}
-{%block body%}
-<nav class="navbar navbar-dark bg-dark">
-    <a class="card" href="/">
-        <img src="static/icons/input.png" class="img-fluid" alt="Responsive image">
+{% extends "layoutHome.html" %}
+{%block homeBody%}
+  <div class="container">
+    <a href="/rekening" class="form-control preview">
+      <div class="scrolling-wrapper-flexbox">
+      <div class="card card1"><img src="static/icons/budget.png" class="img-fluid" alt="Responsive image"></div>
+      {{budget}}</div>
     </a>
-    <div class="scrolling-wrapper-flexbox">
-      <div class="card card1"><a href="#">
-        <img src="static/icons/budget.png" class="img-fluid" alt="Responsive image"></a>
-      </div>
-      <div class="card card2"><a href="#">
-          <img src="static/icons/balans.png" class="img-fluid" alt="Responsive image"></a>
-        </div>
-      <div class="card card3"><a href="#">
-          <img src="static/icons/maand.png" class="img-fluid" alt="Responsive image"></a>
-        </div>
-      <div class="card card4"><a href="#">
-          <img src="static/icons/jaar.png" class="img-fluid" alt="Responsive image"></a>
-        </div>
-      <div class="card card5"><a href="#">
-          <img src="static/icons/grafieken.png" class="img-fluid" alt="Responsive image"></a>
-        </div>
-      <div class="card card6"><a href="#">
-          <img src="static/icons/onderneming.png" class="img-fluid" alt="Responsive image"></a>
-        </div>
-      <div class="card card7"><a href="#">
-          <img src="static/icons/aandelen.png" class="img-fluid" alt="Responsive image"></a>
-        </div>
-    </div>
-  </nav>
+    <a href="/balans" class="form-control preview">
+      <div class="scrolling-wrapper-flexbox">
+      <div class="card card2"><img src="static/icons/balans.png" class="img-fluid" alt="Responsive image"></div>
+      <div>{{balans}}<p>{{schmekkels}}</p></div></div>
+    </a>
+    <a href="/rekening" class="form-control preview">
+      <div class="scrolling-wrapper-flexbox">
+      <div class="card card3"><img src="static/icons/maand.png" class="img-fluid" alt="Responsive image"></div>
+      {{maand}}</div>
+    </a>
+    <a href="/rekening" class="form-control preview">
+      <div class="scrolling-wrapper-flexbox">
+      <div class="card card4"><img src="static/icons/jaar.png" class="img-fluid" alt="Responsive image"></div>
+      {{jaar}}</div>
+    </a>
+    <a href="/rekening" class="form-control preview">
+      <div class="scrolling-wrapper-flexbox">
+      <div class="card card5"><img src="static/icons/grafieken.png" class="img-fluid" alt="Responsive image"></div>
+      {{grafieken}}</div>
+    </a>
+    <a href="/rekening" class="form-control preview">
+      <div class="scrolling-wrapper-flexbox">
+      <div class="card card6"><img src="static/icons/onderneming.png" class="img-fluid" alt="Responsive image"></div>
+      {{onderneming}}</div>
+    </a>
+    <a href="/rekening" class="form-control preview">
+      <div class="scrolling-wrapper-flexbox">
+      <div class="card card7"><img src="static/icons/aandelen.png" class="img-fluid" alt="Responsive image"></div>
+      {{aandelen}}</div>
+    </a>
 {%endblock%}
