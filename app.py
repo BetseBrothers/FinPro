@@ -31,7 +31,7 @@ def login():
         if not request.form.get("username") or not request.form.get("password"):
             return render_template("retry.html")
         rows = db.execute("SELECT * FROM users WHERE username = ?",
-                          request.form.get("username"))
+                          (request.form.get("username"),))
         # Ensure username exists and password is correct
         row = rows.fetchone()
         if not row or not check_password_hash(row[2], request.form.get("password")):
@@ -71,3 +71,8 @@ def register():
 
         # Redirect user to home page
         return redirect("/")
+
+@app.route("/home")
+@login_required
+def home():
+    render_template("home.html")
