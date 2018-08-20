@@ -16,10 +16,21 @@ app.secret_key = b'3RT6HJ8L'
 def test():
     return render_template("input.html")
 
-@app.route("/rekening")
+@app.route("/rekening", methods=["POST","GET"])
 @login_required
 def rekening():
-    return render_template("rekening.html")
+    if request.method == "POST":
+        conn = sqlite3.connect('pythonsqlite.db')
+        db = conn.cursor()
+        # Insert rekening into database
+        db.execute("INSERT INTO rekeningen (userid, balans, rekeningnaam) VALUES(?,0,?)",
+                          (session["user_id"], request.form.get("naam")))
+        # commit changes
+        conn.commit()
+        
+        return render_template("rekening.html")
+    else:
+        return render_template("rekening.html")
 
 @app.route("/login", methods=["POST","GET"])
 def login():
@@ -82,6 +93,7 @@ def home():
                           (session["user_id"],))
     rowb = rowsb.fetchall()
     balans = 0
+    schmekkels = 0
     for row in rowb:
         if not row[2] == "smekkels":
             balans += row[1]
@@ -96,7 +108,6 @@ def balans():
                           (session["user_id"],))
     rowb = rowsb.fetchall()
     balans = 0
-    schmekkels = 0
     for row in rowb:
         if not row[2] == "smekkels":
             balans += row[1]
