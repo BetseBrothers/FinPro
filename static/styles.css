@@ -21,17 +21,19 @@ body {
     height: 50px;
   }
   .card:hover {
-    background-color: rgb(68, 82, 122);
+    background-color: rgba(255, 255, 255, 0.459);
 }
 .cardmain {
     width: 50px;
     height: 50px;
   }
+.card1 {background-color: rgb(248, 145, 61);}
 .card2 {background-color: rgb(243, 255, 80);} /* Blue */
 .card3 {background-color: rgb(47, 203, 255);} /* Blue */
-.card4 {background-color: rgb(66, 255, 129);} /* Blue */
+.card4 {background-color: rgb(218, 98, 255);} /* Blue */
 .card5 {background-color: rgb(66, 255, 129);} /* Blue */
 .card6 {background-color: rgb(255, 41, 51);} /* Blue */
+.card7 {background-color: rgb(73, 230, 183);}
 
   .scrolling-wrapper, .scrolling-wrapper-flexbox {
     height: 50px;
