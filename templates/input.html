@@ -8,30 +8,32 @@ input
                 <div class="scrolling-wrapper-flexbox">
                                 <div class="card card2"><a href="#"><img src="static/icons/Transactie.png" class="img-fluid" alt="Responsive image"></a></div>
                                 <div class="card card3"><a href="#"><img src="static/icons/Overschrijving.png" class="img-fluid" alt="Responsive image"></a></div>
-                                <div class="card card4"><a href="#"><img src="static/icons/Aandeel.png" class="img-fluid" alt="Responsive image"></a></div>
-                                <div class="card card5"><a href="#"><img src="static/icons/Belegging2.png" class="img-fluid" alt="Responsive image"></a></div>
+                                <div class="card card7"><a href="#"><img src="static/icons/Aandeel.png" class="img-fluid" alt="Responsive image"></a></div>
                                 <div class="card card6"><a href="#"><img src="static/icons/Lening1.png" class="img-fluid" alt="Responsive image"></a></div>
+                                <div class="card card1"><a href="#"><img src="static/icons/budget.png" class="img-fluid" alt="Responsive image"></a></div>
+                                <div class="card card2"><a href="#"><img src="static/icons/Rekening.png" class="img-fluid" alt="Responsive image"></a></div>
+                                <div class="card card7"><a href="#"><img src="static/icons/Belegging2.png" class="img-fluid" alt="Responsive image"></a></div>
                         </div>
               </nav>
-        <div class="container">
-                <form action="/rekening" method="get" class="center-block">
-                <button type="submit" class="form-control">open rekening</button>
-                </form>
-                <form action="/" method="get" class="center-block">
-                <button type="submit" class="form-control">verander balans</button>
-                </form>
-                <form action="/" method="get" class="center-block">
-                <button type="submit" class="form-control">smekkels</button>
-                </form>
-                <form action="/" method="get" class="center-block">
-                <button type="submit" class="form-control">smokkels</button>
-                </form>
-                <form action="/" method="get" class="center-block">
-                <button type="submit" class="form-control">aandelen</button>
-                </form>
-                <form action="/" method="get" class="center-block">
-                <button type="submit" class="form-control">leningen</button>
-                </form>
+        <div class="container-fluid">
+                <form action="/input" method="post" id="form">
+                        <input name="name" autocomplete="on" autofocus placeholder="Naam" type="text" class="form-control form1 naam"/>
+                        <input name="Hoeveelheid" placeholder="Bedrag" type="number" pattern="[0-9]*" step="any" required class="form-control form1"/>
+                        <input name="Datum" placeholder="Datum" type="date" class="form-control form1"/>
+
+
+                        <div class="selectpicker scrolling-wrapper-flexbox form1">
+                                        <option selected class="card rekeningkiezer">Open this select menu</option>
+                                        <option class="card rekeningkiezer">KBC Zichtrekening</option>
+                                        <option class="card rekeningkiezer">Two</option>
+                                        <option class="card rekeningkiezer">Three</option>
+                                        <option class="card rekeningkiezer">Four</option>
+                        </div>
+
+                        <input name="Categorie" placeholder="Bv. Voeding->Restaurant" type="text" class="form-control"/>
+
+
+                        <button type="submit" class="form-control form1 add">Voeg toe</button>
         </div>
         </div>
 {%endblock%}

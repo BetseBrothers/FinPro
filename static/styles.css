@@ -43,3 +43,33 @@ body {
   ::-webkit-scrollbar { 
     display: none; 
 }
+
+.form1 {
+    border: 0px solid rgb(0, 0, 0);
+    width: 100%;
+    height: 10%;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    font-size:30px;
+    text-align: center;
+
+}
+.naam {
+    text-transform: capitalize;
+}
+.add {
+    background-color: #44e9b2;
+    font-weight: bold;
+}
+.container-fluid {
+    padding: 0px;
+}
+.rekeningkiezer {
+    width: 30%;
+    height: 100%;
+    font-size:25px;
+    text-align: center;
+    text-transform: capitalize;
+    border: hidden;
+}
+
