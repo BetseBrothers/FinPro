@@ -75,4 +75,4 @@ def register():
 @app.route("/home")
 @login_required
 def home():
-    render_template("home.html")
+    return render_template("home.html")
