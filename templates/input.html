@@ -16,23 +16,26 @@ input
                         </div>
               </nav>
         <div class="container-fluid">
-                <form action="/input" method="post" id="form">
+                <form action="/" method="post" id="form">
                         <input name="name" autocomplete="on" autofocus placeholder="Naam" type="text" class="form-control form1 naam"/>
                         <input name="Hoeveelheid" placeholder="Bedrag" type="number" pattern="[0-9]*" step="any" required class="form-control form1"/>
                         <input name="Datum" placeholder="Datum" type="date" class="form-control form1"/>
 
 
-                        <div class="selectpicker scrolling-wrapper-flexbox form1">
-                                        <option selected class="card rekeningkiezer">Open this select menu</option>
-                                        <option class="card rekeningkiezer">KBC Zichtrekening</option>
-                                        <option class="card rekeningkiezer">Two</option>
-                                        <option class="card rekeningkiezer">Three</option>
-                                        <option class="card rekeningkiezer">Four</option>
+                        <div class="cc-selector scrolling-wrapper-flexbox form1">
+                                        {%for row in rekeningen %}
+                                        {% if row[2] == "smekkels" %}
+                                        <input id={{row[2]}} type="radio" name="rekening" value={{row[2]}} />
+                                        <label class="drinkcard-cc card rekeningkiezer bg-info" for={{row[2]}}>{{row[2]}}</label>
+                                        {% else %}
+                                        <input id={{row[2]}} type="radio" name="rekening" value={{row[2]}} />
+                                        <label class="drinkcard-cc card rekeningkiezer" for={{row[2]}}>{{row[2]}}</label>
+                                        {% endif %}
+                                        {% endfor %}
                         </div>
 
                         <input name="Categorie" placeholder="Bv. Voeding->Restaurant" type="text" class="form-control"/>
-
-
+                        
                         <button type="submit" class="form-control form1 add">Voeg toe</button>
         </div>
         </div>

@@ -20,9 +20,6 @@ body {
     width: 50px;
     height: 50px;
   }
-  .card:hover {
-    background-color: rgba(255, 255, 255, 0.459);
-}
 .cardmain {
     width: 50px;
     height: 50px;
@@ -85,3 +82,45 @@ body {
 .tillend {
   width: 90%
 }
+<<<<<<< HEAD
+
+.cc-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.cc-selector input:active +.drinkcard-cc{opacity: .9;}
+.cc-selector input:checked +.drinkcard-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+    font-weight: bold;
+}
+.drinkcard-cc{
+    cursor:pointer;
+    background-color: #44e9b2;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:30%;height:100%;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+=======
+>>>>>>> 1966803c1aae65a834881df7f4971308a089f1b9
