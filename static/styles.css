@@ -1,6 +1,9 @@
 body {
-    background: #393939 !important;
+    background: #555555 !important;
 
+}
+.navbar {
+  flex-wrap: nowrap;
 }
 .scrolling-wrapper-flexbox {
     display: flex;
