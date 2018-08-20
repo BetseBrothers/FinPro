@@ -3,7 +3,7 @@ body {
 
 }
 .navbar {
-  flex-wrap: nowrap;
+    flex-wrap: nowrap;
 }
 .scrolling-wrapper-flexbox {
     display: flex;
@@ -17,7 +17,7 @@ body {
   
   .card {
     border: 1px solid white;
-    width: 150px;
+    width: 50px;
     height: 50px;
     background: black;
   }
@@ -25,5 +25,8 @@ body {
   .scrolling-wrapper, .scrolling-wrapper-flexbox {
     height: 75px;
     width: 100%;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
   }
+  ::-webkit-scrollbar { 
+    display: none; 
+}
