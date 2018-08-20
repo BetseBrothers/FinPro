@@ -38,7 +38,7 @@ def login():
             return render_template("retry.html")
 
         # Remember which user has logged in
-        session["user_id"] = request.form.get("username")
+        session["user_id"] = row[0]
 
         # Redirect user to home page
         return redirect("/")
@@ -65,9 +65,11 @@ def register():
         conn.commit()
         if not rows:
             return render_template("retry.html")
-
+        rows = db.execute("SELECT * FROM users WHERE username = ?",
+                          (request.form.get("username"),))
+        row = rows.fetchone()
         # Remember which user has logged in
-        session["user_id"] = request.form.get("username")
+        session["user_id"] = row[0]
 
         # Redirect user to home page
         return redirect("/")
@@ -75,4 +77,27 @@ def register():
 @app.route("/home")
 @login_required
 def home():
-    return render_template("home.html")
+    db = db_connect('pythonsqlite.db')
+    rowsb = db.execute("SELECT * FROM rekeningen WHERE userid = ? ",
+                          (session["user_id"],))
+    rowb = rowsb.fetchall()
+    balans = 0
+    for row in rowb:
+        if not row[2] == "smekkels":
+            balans += row[1]
+        else:
+            schmekkels = row[1]
+    return render_template("home.html", balans=balans, schmekkels=schmekkels)
+@app.route("/balans")
+@login_required
+def balans():
+    db = db_connect('pythonsqlite.db')
+    rowsb = db.execute("SELECT * FROM rekeningen WHERE userid = ? ",
+                          (session["user_id"],))
+    rowb = rowsb.fetchall()
+    balans = 0
+    schmekkels = 0
+    for row in rowb:
+        if not row[2] == "smekkels":
+            balans += row[1]
+    return render_template("balans.html", rekeningen=rowb, totaal=balans)

@@ -1,0 +1,27 @@
+{%extends "layoutHome.html"%}
+{%block homeBody%}
+<div class="container">
+    {%for row in rekeningen %}
+    {% if row[2] == "smekkels" %}
+    <div class="form-control bg-info">
+    {% else %}
+    <div class="form-control">
+    {% endif %}
+        <table class="full">
+            <tr>
+                <td class="tillend">{{row[2]}}</td>
+                <td>{{row[1]}}</td>
+            </tr>
+        </table>
+    </div>
+    {%endfor %}
+    <div class="form-control bg-secondary">
+        <table class="full">
+            <tr>
+                <td class="tillend">Totaal</td>
+                <td>{{totaal}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+{%endblock%}
