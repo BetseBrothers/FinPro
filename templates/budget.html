@@ -1,0 +1,37 @@
+{%extends "layoutHome.html"%}
+{%block homeBody%}
+<div class="btn-group headerbudget" role="group" aria-label="Basic example">
+        <button type="button" class="largebudget btn btn-warning">Budget</button>
+        <button type="button" class="smallbudget btn btn-warning">Plan</button>
+        <button type="button" class="smallbudget btn btn-warning">Status</button>
+        <button type="button" class="smallbudget btn btn-warning">Percent</button>
+      </div>
+<div class="btn-group headerbudget" role="group" aria-label="Basic example">
+        <button type="button" class="largebudget btn btn-success">Inkomsten</button>
+        <button type="button" class="smallbudget btn btn-success">100$</button>
+        <button type="button" class="smallbudget btn btn-success">18$</button>
+        <button type="button" class="smallbudget btn btn-success">18%</button>
+      </div>
+
+<div class="btn-group headerbudget" role="group" aria-label="Button group with nested dropdown">
+    <div class="largebudget btn-group" role="group">
+        <button id="btnGroupDrop1" type="button" class="expensebudget btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Budget 1
+        </button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="#">Categorie 1</a>
+                <a class="dropdown-item" href="#">Categorie 2</a>
+                <a class="dropdown-item" href="#">Categorie 3</a>
+        </div>
+    </div>
+    <button type="button" class="smallbudget btn btn-danger">100$</button>
+    <button type="button" class="smallbudget btn btn-danger">20$</button>
+    <button type="button" class="smallbudget btn btn-danger">20%</button>
+</div>
+<div class="btn-group headerbudget" role="group" aria-label="Basic example">
+        <button type="button" class="largebudget btn btn-danger">Overige</button>
+        <button type="button" class="smallbudget btn btn-danger">Plan</button>
+        <button type="button" class="smallbudget btn btn-danger">Status</button>
+        <button type="button" class="smallbudget btn btn-danger">Percent</button>
+      </div>
+{%endblock%}
