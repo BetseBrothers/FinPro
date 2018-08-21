@@ -14,11 +14,32 @@ app.secret_key = b'3RT6HJ8L'
 @app.route("/", methods=["POST","GET"])
 @login_required
 def test():
-    db = db_connect('pythonsqlite.db')
-    rows = db.execute("SELECT * FROM rekeningen WHERE userid = ? ",
-                        (session["user_id"],))
-    rekeningen = rows.fetchall()
-    return render_template("input.html", rekeningen=rekeningen)
+    if request.method == "GET":
+        db = db_connect('pythonsqlite.db')
+        rows = db.execute("SELECT * FROM rekeningen WHERE userid = ? ",
+                            (session["user_id"],))
+        rekeningen = rows.fetchall()
+        return render_template("input.html", rekeningen=rekeningen)
+    else:
+        conn = sqlite3.connect('pythonsqlite.db')
+        db = conn.cursor()
+        # Insert transactie into database
+        db.execute("INSERT INTO Transacties (Userid, Naam, Bedrag, Datum, Rekening, Soort, Categorie, Subcategorie) VALUES(?,?,?,?,?,?,?,?)",
+                          (session["user_id"], request.form.get("name"), request.form.get("Hoeveelheid"), request.form.get("Datum"), request.form.get("rekening"), request.form.get("soort"), request.form.get("Categorie"), request.form.get("Subcategorie")))
+        # commit changes
+        conn.commit()
+        rows = db.execute("SELECT * FROM rekeningen where userid=? AND rekeningnaam=?",
+                            (session["user_id"], request.form.get("rekening")))
+        balans = rows.fetchone()
+        if request.form.get("soort") == "Uitgave":
+            newbalans = balans[1] - float(request.form.get("Hoeveelheid"))
+        else:
+            newbalans = balans[1] + float(request.form.get("Hoeveelheid"))
+        db.execute("UPDATE rekeningen SET balans=? WHERE userid=? AND rekeningnaam=?",
+                          (newbalans, session["user_id"], request.form.get("rekening")))
+        # commit changes
+        conn.commit()
+        return render_template("rekening.html")
 
 @app.route("/rekening", methods=["POST","GET"])
 @login_required

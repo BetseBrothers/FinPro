@@ -9,20 +9,20 @@
 
                 <div class="cc-selector scrolling-wrapper-flexbox form1">
                         {%for row in rekeningen %}
-                        <input id={{row[2]}} type="radio" name="rekening" value={{row[2]}} />
+                        <input id={{row[2]}} required type="radio" name="rekening" value={{row[2]}} />
                         <label class="drinkcard-cc card rekeningkiezer" for={{row[2]}}>{{row[2]}}</label>
                         {% endfor %}
                 </div>
                 <div class="cc-selector scrolling-wrapper-flexbox form1">
-                        <input id="shmekkels" type="radio" name="soort" value="shmekkels" />
+                        <input id="shmekkels" type="radio" required name="soort" value="shmekkels" />
                         <label class="drinkcard-cc card Shmekkels" for="shmekkels">shmekkels</label>
-                        <input id="Inkomst" type="radio" name="soort" value="Inkomst" />
+                        <input id="Inkomst" type="radio" required name="soort" value="Inkomst" />
                         <label class="drinkcard-cc card Shmekkels" for="Inkomst">Inkomst</label>
-                        <input id="Uitgave" type="radio" name="soort" value="Uitgave" />
+                        <input id="Uitgave" type="radio" required name="soort" value="Uitgave" />
                         <label class="drinkcard-cc card Shmekkels" for="Uitgave">Uitgave</label>
                 </div>
                 <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="shmekkelCategorie">
-                                <input id="c1" type="radio" name="Categorie" value="shmekkels" />
+                                <input id="c1" type="radio" name="Categorie" required value="shmekkels" />
                                 <label class="drinkcard-cc card Categorie" for="c1"><img src="static/icons/Transactie.png" class="img-fluid" alt="Responsive image"></label>
                                 <input id="c2" type="radio" name="Categorie" value="Inkomst" />
                                 <label class="drinkcard-cc card Categorie" for="c2"><img src="static/icons/Transactie.png" class="img-fluid" alt="Responsive image"></label>
@@ -50,7 +50,7 @@
                                 <label class="drinkcard-cc card Categorie card5" for="andere"><img src="static/icons/andere.png" class="img-fluid" alt="Responsive image"></label>
                 </div>
                 <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="voedingC">
-                                <input id="restaurant" type="radio" name="Subcategorie" value="restaurant" />
+                                <input id="restaurant" type="radio" name="Subcategorie" required value="restaurant" />
                                 <label class="drinkcard-cc card Categorie card3" for="restaurant"><img src="static/icons/restaurant.png" class="img-fluid" alt="Responsive image"></label>
                                 <input id="winkel" type="radio" name="Subcategorie" value="winkel" />
                                 <label class="drinkcard-cc card Categorie card3" for="winkel"><img src="static/icons/winkel.png" class="img-fluid" alt="Responsive image"></label>
