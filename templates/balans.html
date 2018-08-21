@@ -1,25 +1,92 @@
 {%extends "layoutHome.html"%}
 {%block homeBody%}
 <div class="container">
-    {%for row in rekeningen %}
+    {% for row in rekeningen %}
     {% if row[2] == "smekkels" %}
-    <div class="form-control bg-info">
-    {% else %}
     <div class="form-control">
+        <table class="full">
+                <tr>
+                    <td class="tillend smekkelbalans">{{row[2]}}</td>
+                    <td class="smekkelbalans">{{row[1]}}</td>
+                </tr>
+            </table>
+        </div>
+    {% elif row[2] == "cash" %}
+    <div class="form-control cash">
+        <table class="full">
+                <tr>
+                    <td class="tillend balans">{{row[2]}}</td>
+                    <td class="balans">{{row[1]}}</td>
+                </tr>
+            </table>
+        </div>
     {% endif %}
+    {% endfor %}
+    <div class="form-control rekeningen">
+            <table class="full">
+                    <tr>
+                        <td class="tillend balans">Rekeningen</td>
+                        <td class="balans">{{rekeningtotaal}}</td>
+                    </tr>
+                </table>
+            </div>
+    {% for row in rekeningen %}
+    {% if row[2] != "smekkels" and row[2] != "cash" %}
+    <div class="form-control rekeningenbalans">
         <table class="full">
             <tr>
-                <td class="tillend">{{row[2]}}</td>
-                <td>{{row[1]}}</td>
+                <td class="tillend rekeningenbalans">{{row[2]}}</td>
+                <td class="rekeningenbalans">{{row[1]}}</td>
             </tr>
         </table>
     </div>
-    {%endfor %}
-    <div class="form-control bg-secondary">
+    {% endif %}
+    {% endfor %}
+    <div class="form-control beleggingen">
+        <table class="full">
+                <tr>
+                    <td class="tillend balans">Beleggingen</td>
+                    <td class="balans">Optelling</td>
+                </tr>
+            </table>
+        </div>
+    <div class="form-control uitgaven">
+        <table class="full">
+                <tr>
+                    <td class="tillend balans">Schulden</td>
+                    <td class="balans">Optelling</td>
+                </tr>
+            </table>
+        </div>
+    <div class="form-control totaalbalans">
         <table class="full">
             <tr>
-                <td class="tillend">Totaal</td>
-                <td>{{totaal}}</td>
+                <td class="tillend balans">Totaal</td>
+                <td class="balans">{{totaal}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-control">
+        <table class="full">
+            <tr>
+                <td class="tillend rekeningenbalans">Inkomsten</td>
+                <td class="rekeningenbalans">Optelling</td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-control">
+        <table class="full">
+            <tr>
+                <td class="tillend schuldenbalans">Uitgaven</td>
+                <td class="schuldenbalans">Optelling</td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-control">
+        <table class="full">
+            <tr>
+                <td class="tillend beleggingenbalans">Rendement</td>
+                <td class="beleggingenbalans">Optelling</td>
             </tr>
         </table>
     </div>

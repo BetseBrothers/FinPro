@@ -108,10 +108,68 @@ body {
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;
 }
-.drinkcard-cc:hover{
-}
 
 /* Extras */
 a:visited{color:#888}
 a{color:#444;text-decoration:none;}
 p{margin-bottom:.3em;}
+
+.smekkelbalans {
+    color: rgb(0, 0, 0);
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.cash {
+    background-color: rgb(71, 163, 106) !important;
+    text-transform: capitalize;
+}
+.rekeningenbalans {
+    color: rgb(71, 163, 106);
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.beleggingenbalans {
+    color: rgb(47, 100, 199);
+    font-weight: bold;
+}
+.schuldenbalans {
+    color: crimson;
+    font-weight: bold;
+}
+.totaalbalans {
+    background-color: rgb(0, 0, 0);
+}
+.balans {
+    color: #ffffff !important;
+    font-weight: bold;
+}
+.inkomsten {
+    background-color: rgb(63, 141, 63);
+}
+.uitgaven {
+    background-color: rgb(182, 51, 51);
+}
+.beleggingen {
+    background-color: rgb(47, 100, 199);
+}
+.rekeningen {
+    background-color: rgb(71, 163, 106);
+}
+.largebudget {
+    width:41.5% !important;
+    font-weight: bold;
+}
+.smallbudget {
+    width:20% !important;
+    background-color: #ffffff !important;
+    color: rgb(0, 0, 0);
+}
+.headerbudget {
+    width:100% !important;
+    font-weight: bold;
+    margin: 1px;
+}
+.expensebudget {
+    width:100% !important;
+    font-weight: bold;
+}

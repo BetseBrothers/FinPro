@@ -115,4 +115,12 @@ def balans():
     for row in rowb:
         if not row[2] == "smekkels":
             balans += row[1]
-    return render_template("balans.html", rekeningen=rowb, totaal=balans)
+    rekeningtotaal = 0
+    for row in rowb:
+        if not row[2] == "smekkels" and not row[2] == "cash":
+            rekeningtotaal += row[1]
+    return render_template("balans.html", rekeningen=rowb, totaal=balans, rekeningtotaal=rekeningtotaal)
+@app.route("/budget")
+@login_required
+def budget():
+    return render_template("budget.html")
