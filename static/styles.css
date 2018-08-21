@@ -56,6 +56,7 @@ body {
 .add {
     background-color:#4193ff;
     font-weight: bold;
+    height: 16%;
 }
 .container-fluid {
     padding: 0px;
