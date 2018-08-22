@@ -1,43 +1,91 @@
-{% extends "layout.html" %}
-{% block title %}
-input
-{%endblock%}
-{%block body%}
-<nav class="navbar navbar-dark bg-dark">
-                <a class="card cardmain" href="/home"><img src="static/icons/home.png" class="img-fluid" alt="Responsive image"></a>
-                <div class="scrolling-wrapper-flexbox">
-                                <div class="card card2"><a href="#"><img src="static/icons/Transactie.png" class="img-fluid" alt="Responsive image"></a></div>
-                                <div class="card card3"><a href="#"><img src="static/icons/Overschrijving.png" class="img-fluid" alt="Responsive image"></a></div>
-                                <div class="card card7"><a href="#"><img src="static/icons/Aandeel.png" class="img-fluid" alt="Responsive image"></a></div>
-                                <div class="card card6"><a href="#"><img src="static/icons/Lening1.png" class="img-fluid" alt="Responsive image"></a></div>
-                                <div class="card card1"><a href="#"><img src="static/icons/budget.png" class="img-fluid" alt="Responsive image"></a></div>
-                                <div class="card card2"><a href="#"><img src="static/icons/Rekening.png" class="img-fluid" alt="Responsive image"></a></div>
-                                <div class="card card7"><a href="#"><img src="static/icons/Belegging2.png" class="img-fluid" alt="Responsive image"></a></div>
-                        </div>
-              </nav>
-        <div class="container-fluid">
-                <form action="/" method="post" id="form">
-                        <input name="name" autocomplete="on" autofocus placeholder="Naam" type="text" class="form-control form1 naam"/>
-                        <input name="Hoeveelheid" placeholder="Bedrag" type="number" pattern="[0-9]*" step="any" required class="form-control form1"/>
-                        <input name="Datum" placeholder="Datum" type="date" class="form-control form1"/>
+{%extends "layoutInput.html"%}
+{%block input%}
+<div class="container-fluid">
+        <form action="/" method="post" id="form">
+                <input name="name" autocomplete="on" autofocus placeholder="Naam" type="text" required class="form-control form1 naam"/>
+                <input name="Hoeveelheid" placeholder="Bedrag" type="number" pattern="[0-9]*" step="any" required class="form-control form1"/>
+                <input name="Datum" placeholder="Datum" type="date" required class="form-control form1"/>
 
 
-                        <div class="cc-selector scrolling-wrapper-flexbox form1">
-                                        {%for row in rekeningen %}
-                                        {% if row[2] == "smekkels" %}
-                                        <input id={{row[2]}} type="radio" name="rekening" value={{row[2]}} />
-                                        <label class="drinkcard-cc card rekeningkiezer bg-info" for={{row[2]}}>{{row[2]}}</label>
-                                        {% else %}
-                                        <input id={{row[2]}} type="radio" name="rekening" value={{row[2]}} />
-                                        <label class="drinkcard-cc card rekeningkiezer" for={{row[2]}}>{{row[2]}}</label>
-                                        {% endif %}
-                                        {% endfor %}
-                        </div>
-
-                        <input name="Categorie" placeholder="Inkomst - Uitgave - Shmekkels" type="text" class="form-control form1"/>
-                        <input name="Categorie" placeholder="Categorieën" type="text" class="form-control form1"/>
-                        <input name="Categorie" placeholder="Subcategorieën" type="text" class="form-control form1"/>
-                        <button type="submit" class="form-control form1 add">Voeg toe</button>
-        </div>
-        </div>
+                <div class="cc-selector scrolling-wrapper-flexbox form1">
+                        {%for row in rekeningen %}
+                        <input id={{row[2]}} required type="radio" name="rekening" value={{row[2]}} />
+                        <label class="drinkcard-cc card rekeningkiezer" for={{row[2]}}>{{row[2]}}</label>
+                        {% endfor %}
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox form1">
+                        <input id="shmekkels" type="radio" required name="soort" value="shmekkels" />
+                        <label class="drinkcard-cc card Shmekkels" for="shmekkels">shmekkels</label>
+                        <input id="Inkomst" type="radio" required name="soort" value="Inkomst" />
+                        <label class="drinkcard-cc card Shmekkels" for="Inkomst">Inkomst</label>
+                        <input id="Uitgave" type="radio" required name="soort" value="Uitgave" />
+                        <label class="drinkcard-cc card Shmekkels" for="Uitgave">Uitgave</label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="shmekkelCategorie">
+                                <input id="c1" type="radio" name="Categorie" required value="shmekkels" />
+                                <label class="drinkcard-cc card Categorie" for="c1"><img src="static/icons/Transactie.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="c2" type="radio" name="Categorie" value="Inkomst" />
+                                <label class="drinkcard-cc card Categorie" for="c2"><img src="static/icons/Transactie.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="c3" type="radio" name="Categorie" value="Uitgave" />
+                                <label class="drinkcard-cc card Categorie" for="c3"><img src="static/icons/Transactie.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="inkomstCategorie">
+                                <input id="a" type="radio" name="Categorie" value="shmekkels" />
+                                <label class="drinkcard-cc card Categorie" for="a">shmekkels</label>
+                                <input id="b" type="radio" name="Categorie" value="Inkomst" />
+                                <label class="drinkcard-cc card Categorie" for="b">Inkomst</label>
+                                <input id="c" type="radio" name="Categorie" value="Uitgave" />
+                                <label class="drinkcard-cc card Categorie" for="c">Uitgave</label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="uitgaveCategorie">
+                                <input id="woning" type="radio" name="Categorie" value="woning" />
+                                <label class="drinkcard-cc card Categorie card1" for="woning"><img src="static/icons/woning.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="transport" type="radio" name="Categorie" value="transport" />
+                                <label class="drinkcard-cc card Categorie card2" for="transport"><img src="static/icons/transport.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="voeding" type="radio" name="Categorie" value="voeding" />
+                                <label class="drinkcard-cc card Categorie card3" for="voeding"><img src="static/icons/voeding.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="hobbies" type="radio" name="Categorie" value="hobbies" />
+                                <label class="drinkcard-cc card Categorie card4" for="hobbies"><img src="static/icons/hobbies.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="andere" type="radio" name="Categorie" value="andere" />
+                                <label class="drinkcard-cc card Categorie card5" for="andere"><img src="static/icons/andere.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="voedingC">
+                                <input id="restaurant" type="radio" name="Subcategorie" required value="restaurant" />
+                                <label class="drinkcard-cc card Categorie card3" for="restaurant"><img src="static/icons/restaurant.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="winkel" type="radio" name="Subcategorie" value="winkel" />
+                                <label class="drinkcard-cc card Categorie card3" for="winkel"><img src="static/icons/winkel.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="transportC">
+                                <input id="openbaarVervoer" type="radio" name="Subcategorie" value="openbaarVervoer" />
+                                <label class="drinkcard-cc card Categorie card2" for="openbaarVervoer"><img src="static/icons/openbaarVervoer.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="auto" type="radio" name="Subcategorie" value="auto" />
+                                <label class="drinkcard-cc card Categorie card2" for="auto"><img src="static/icons/auto.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="woningC">
+                                <input id="elektriciteit" type="radio" name="Subcategorie" value="elektriciteit" />
+                                <label class="drinkcard-cc card Categorie card1" for="elektriciteit"><img src="static/icons/elektriciteit.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="huis" type="radio" name="Subcategorie" value="huis" />
+                                <label class="drinkcard-cc card Categorie card1" for="huis"><img src="static/icons/woning.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="water" type="radio" name="Subcategorie" value="water" />
+                                <label class="drinkcard-cc card Categorie card1" for="water"><img src="static/icons/water.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="internet" type="radio" name="Subcategorie" value="internet" />
+                                <label class="drinkcard-cc card Categorie card1" for="internet"><img src="static/icons/internet.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="hobbiesC">
+                                <input id="games" type="radio" name="Subcategorie" value="games" />
+                                <label class="drinkcard-cc card Categorie card4" for="games"><img src="static/icons/games.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="sport" type="radio" name="Subcategorie" value="sport" />
+                                <label class="drinkcard-cc card Categorie card4" for="sport"><img src="static/icons/sport.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="tekenen" type="radio" name="Subcategorie" value="tekenen" />
+                                <label class="drinkcard-cc card Categorie card4" for="tekenen"><img src="static/icons/tekenen.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="andereC">
+                                <input id="onderwijs" type="radio" name="Subcategorie" value="onderwijs" />
+                                <label class="drinkcard-cc card Categorie card5" for="onderwijs"><img src="static/icons/onderwijs.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <button type="submit" class="form-control form1 add">Voeg toe</button>
+</div>
+</div>
+<!-- App's own javascript(must be at bottom)-->
+<script src="/static/input.js"></script>
 {%endblock%}

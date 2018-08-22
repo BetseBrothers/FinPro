@@ -24,13 +24,13 @@ body {
     width: 50px;
     height: 50px;
   }
-.card1 {background-color: rgb(248, 145, 61);}
-.card2 {background-color: rgb(243, 255, 80);} /* Blue */
-.card3 {background-color: rgb(47, 203, 255);} /* Blue */
-.card4 {background-color: rgb(218, 98, 255);} /* Blue */
-.card5 {background-color: rgb(66, 255, 129);} /* Blue */
-.card6 {background-color: rgb(255, 41, 51);} /* Blue */
-.card7 {background-color: rgb(73, 230, 183);}
+.card1 {background-color: rgb(248, 145, 61) !important;}
+.card2 {background-color: rgb(243, 255, 80) !important;} /* Blue */
+.card3 {background-color: rgb(47, 203, 255) !important;} /* Blue */
+.card4 {background-color: rgb(218, 98, 255) !important;} /* Blue */
+.card5 {background-color: rgb(66, 255, 129) !important;} /* Blue */
+.card6 {background-color: rgb(255, 41, 51) !important;} /* Blue */
+.card7 {background-color: rgb(73, 230, 183) !important;}
 
   .scrolling-wrapper, .scrolling-wrapper-flexbox {
     height: 50px;
@@ -56,7 +56,7 @@ body {
 .add {
     background-color:#4193ff;
     font-weight: bold;
-    height: 16%;
+    height: 11%;
 }
 .container-fluid {
     padding: 0px;
@@ -64,13 +64,45 @@ body {
 .rekeningkiezer {
     width: 40%;
     height: 100%;
-    font-size:25px;
+    font-size: 25px;
     text-align: center;
     text-transform: capitalize;
     border: hidden;
-    padding-top: 13;
+    padding-top: 4%;
+    margin-bottom: 0%;
 }
+.Shmekkels {
+  width: 32.5% !important;
+  height: 100%;
+  font-size: 25px;
+  text-align: center;
+  text-transform: capitalize;
+  border: hidden;
+  padding-top: 4%;
+  margin-left: 1px;
+  margin-bottom: 0%;
+}
+.Categorie {
+  width: 75px !important;
+  height: 100%;
+  font-size: 25px;
+  text-align: center;
+  text-transform: capitalize;
+  border: hidden;
+  margin-left: 1px;
+  margin-bottom: 0%;
+  padding: 10px;
+}
+.CategorieBalk {
+  border: 0px solid rgb(0, 0, 0);
+  width: 100%;
+  height: 75px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+  font-size:20px;
+  text-align: center;
 
+}
 .preview {
   flex-wrap: nowrap;
   height: 80px;
@@ -93,12 +125,13 @@ body {
 
 .cc-selector input:active +.drinkcard-cc{opacity: .9;}
 .cc-selector input:checked +.drinkcard-cc{
-    background-color: #4193ff !important;
+    background-color: #4193ff;
     font-weight: bold;
+    padding: 0px;
 }
 .drinkcard-cc{
     cursor:pointer;
-    background-color: #ffffff !important;
+    background-color: #ffffff;
     background-size:contain;
     background-repeat:no-repeat;
     display:inline-block;
