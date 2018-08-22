@@ -158,18 +158,24 @@ p{margin-bottom:.3em;}
 .largebudget {
     width:41.5% !important;
     font-weight: bold;
+    padding: 0px;
 }
 .smallbudget {
     width:20% !important;
-    background-color: #ffffff !important;
-    color: rgb(0, 0, 0);
+
 }
 .headerbudget {
-    width:100% !important;
+    width:99% !important;
     font-weight: bold;
     margin: 1px;
+    margin-left: 2px;
 }
 .expensebudget {
     width:100% !important;
     font-weight: bold;
+}
+.bar {
+    height: 38px;
+    margin: 1px;
+    width: 100%;
 }

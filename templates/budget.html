@@ -1,37 +1,67 @@
 {%extends "layoutHome.html"%}
 {%block homeBody%}
 <div class="btn-group headerbudget" role="group" aria-label="Basic example">
-        <button type="button" class="largebudget btn btn-warning">Budget</button>
+        <button type="button" class="largebudget btn btn-warning">Augustus 2018</button>
         <button type="button" class="smallbudget btn btn-warning">Plan</button>
-        <button type="button" class="smallbudget btn btn-warning">Status</button>
+        <button type="button" class="smallbudget btn btn-warning">Huidig</button>
         <button type="button" class="smallbudget btn btn-warning">Percent</button>
       </div>
 <div class="btn-group headerbudget" role="group" aria-label="Basic example">
-        <button type="button" class="largebudget btn btn-success">Inkomsten</button>
-        <button type="button" class="smallbudget btn btn-success">100$</button>
-        <button type="button" class="smallbudget btn btn-success">18$</button>
-        <button type="button" class="smallbudget btn btn-success">18%</button>
+        <div class="largebudget btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="expensebudget btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Inkomsten
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="#">Verander inkomsten</a>
+                </div>
+            </div>
+        <button type="button" class="smallbudget btn ">100$</button>
+        <button type="button" class="smallbudget btn ">18$</button>
+        <button type="button" class="smallbudget btn ">18%</button>
       </div>
 
 <div class="btn-group headerbudget" role="group" aria-label="Button group with nested dropdown">
     <div class="largebudget btn-group" role="group">
-        <button id="btnGroupDrop1" type="button" class="expensebudget btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Budget 1
+        <button id="btnGroupDrop1" type="button" class="expensebudget btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Kotuitgaven
         </button>
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                 <a class="dropdown-item" href="#">Categorie 1</a>
                 <a class="dropdown-item" href="#">Categorie 2</a>
                 <a class="dropdown-item" href="#">Categorie 3</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Verander budget</a>
         </div>
     </div>
-    <button type="button" class="smallbudget btn btn-danger">100$</button>
-    <button type="button" class="smallbudget btn btn-danger">20$</button>
-    <button type="button" class="smallbudget btn btn-danger">20%</button>
+    <button type="button" class="smallbudget btn ">100$</button>
+    <button type="button" class="smallbudget btn ">20$</button>
+    <button type="button" class="smallbudget btn ">20%</button>
 </div>
 <div class="btn-group headerbudget" role="group" aria-label="Basic example">
-        <button type="button" class="largebudget btn btn-danger">Overige</button>
-        <button type="button" class="smallbudget btn btn-danger">Plan</button>
-        <button type="button" class="smallbudget btn btn-danger">Status</button>
-        <button type="button" class="smallbudget btn btn-danger">Percent</button>
+        <div class="largebudget btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="expensebudget btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Overige
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="#">Verander budget</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Nieuw budget</a>
+                </div>
+            </div>
+        <button type="button" class="smallbudget btn ">10$</button>
+        <button type="button" class="smallbudget btn ">0$</button>
+        <button type="button" class="smallbudget btn ">0%</button>
       </div>
+<div class="btn-group headerbudget" role="group" aria-label="Basic example">
+    <button type="button" class="largebudget btn btn-warning">Balans</button>
+    <button type="button" class="smallbudget btn btn-warning">Plan</button>
+    <button type="button" class="smallbudget btn btn-warning">Huidig</button>
+    <button type="button" class="smallbudget btn btn-warning">Spaar-%</button>
+    </div>
+<div class="btn-group headerbudget" role="group" aria-label="Basic example">
+    <button type="button" class="largebudget btn btn-primary">Savings</button>
+    <button type="button" class="smallbudget btn ">10$</button>
+    <button type="button" class="smallbudget btn ">0$</button>
+    <button type="button" class="smallbudget btn ">0%</button>
+    </div>
 {%endblock%}
