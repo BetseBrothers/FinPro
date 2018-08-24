@@ -1,4 +1,7 @@
 {% extends "layoutHome.html" %}
+{% block homeTitle %}
+home
+{%endblock%}
 {%block homeBody%}
   <div class="container">
     <a href="/budget" class="form-control preview">
@@ -11,7 +14,7 @@
       <div class="card card2"><img src="static/icons/balans.png" class="img-fluid" alt="Responsive image"></div>
       <div>{{balans}}<p>{{schmekkels}}</p></div></div>
     </a>
-    <a href="/rekening" class="form-control preview">
+    <a href="/maand" class="form-control preview">
       <div class="scrolling-wrapper-flexbox">
       <div class="card card3"><img src="static/icons/maand.png" class="img-fluid" alt="Responsive image"></div>
       {{maand}}</div>

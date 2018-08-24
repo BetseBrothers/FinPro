@@ -6,6 +6,7 @@ from werkzeug.exceptions import default_exceptions
 from werkzeug.security import check_password_hash, generate_password_hash
 from numbers import Number
 import sqlite3
+import time
 
 app = Flask(__name__)
 # totaal random
@@ -145,3 +146,13 @@ def balans():
 @login_required
 def budget():
     return render_template("budget.html")
+@app.route("/maand")
+@login_required
+def maand():
+    db = db_connect('pythonsqlite.db')
+    dbU = db_connect('pythonsqlite.db')
+    rowsI = db.execute("SELECT * FROM Transacties WHERE userid=? AND soort='Inkomst'", (session["user_id"],))
+    rowsU = dbU.execute("SELECT * FROM Transacties WHERE userid=? AND soort='Uitgave'", (session["user_id"],))
+    transacties = rowsI.fetchall()
+    transactiesU = rowsU.fetchall()
+    return render_template("maand.html", transacties=transacties, Uitgaven=transactiesU, date=time.strftime("%x"))

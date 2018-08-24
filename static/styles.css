@@ -110,7 +110,8 @@ body {
   padding: 15px;
 }
 .full {
-  width: 100%
+  width: 100%;
+  height: 100%;
 }
 .tillend {
   width: 90%
@@ -211,4 +212,56 @@ p{margin-bottom:.3em;}
     height: 38px;
     margin: 1px;
     width: 100%;
+}
+.no-padding {
+  padding: 0%;
+  height: 6.5%;
+  border: 0px;
+  margin-top: 1px;
+  width: 100%;
+}
+.groot-deel {
+  padding: 0%;
+  width: 33%;
+  font-size: large;
+  text-align: center;
+  height: 100%;
+}
+.deel {
+  padding: 0%;
+  width: 18%;
+  text-align: center;
+  height: 100%;
+  text-transform: capitalize;
+}
+.full-maand {
+  width: 100%;
+  height: 100%;
+}
+.dropdownMaand {
+  margin-top: 0%;
+  display: none;
+  flex-wrap: wrap;
+}
+.no-margin {
+  margin-top: 0%;
+  margin-right: 0%;
+}
+.small {
+  height: 6vh;
+  width: 6vh !important;
+  padding: 5px;
+}
+.end {
+  padding-left: 10% !important;
+}
+.deel-trans {
+  padding: 0%;
+  width: 23.8%;
+  text-align: center;
+  height: 100%;
+  text-transform: capitalize;
+}
+.grijs {
+  background-color: #dddddd;
 }
