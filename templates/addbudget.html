@@ -5,41 +5,81 @@
         <input autocomplete="off" required autofocus name="naam" placeholder="Naam van budget" type="text" class="addbudget btn btn-danger" id="input"/>
     </div>
     <div class="btn-group headerbudget" role="group" aria-label="Basic example">
-        <input autocomplete="off" required name="bedrag" placeholder="Bedrag" type="number" class="addbudgetbedrag btn" id="input"/>
+        <input autocomplete="off" required name="bedrag" placeholder="Bedrag" step="0.1" type="number" class="addbudgetbedrag btn" id="input"/>
     </div>
-<div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="voedingC">
-            <input id="restaurant" type="checkbox" name="Subcategorie1" value="restaurant" />
+    <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="voedingC">
+            <input id="restaurant" type="checkbox" name="restaurant" value="restaurant" />
             <label class="drinkcard-cc card Categorie card3" for="restaurant"><img src="static/icons/restaurant.png" class="img-fluid" alt="Responsive image"></label>
-            <input id="winkel" type="checkbox" name="Subcategorie2" value="winkel" />
+            <input id="winkel" type="checkbox" name="winkel" value="winkel" />
             <label class="drinkcard-cc card Categorie card3" for="winkel"><img src="static/icons/winkel.png" class="img-fluid" alt="Responsive image"></label>
-</div>
-<div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="transportC">
-            <input id="openbaarVervoer" type="checkbox" name="Subcategorie3" value="openbaarVervoer" />
+            <input id="openbaarVervoer" type="checkbox" name="openbaarVervoer" value="openbaarVervoer" />
             <label class="drinkcard-cc card Categorie card2" for="openbaarVervoer"><img src="static/icons/openbaarVervoer.png" class="img-fluid" alt="Responsive image"></label>
-            <input id="auto" type="checkbox" name="Subcategorie4" value="auto" />
+            <input id="auto" type="checkbox" name="auto" value="auto" />
             <label class="drinkcard-cc card Categorie card2" for="auto"><img src="static/icons/auto.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="verzekering" type="checkbox" name="verzekering" value="verzekering" />
+            <label class="drinkcard-cc card Categorie card6" for="verzekering"><img src="static/icons/verzekering.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="dokters" type="checkbox" name="dokters" value="dokters" />
+            <label class="drinkcard-cc card Categorie card6" for="dokters"><img src="static/icons/dokters.png" class="img-fluid" alt="Responsive image"></label>
+</div>
+<div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="utilitiesC">
+            <input id="kleren" type="checkbox" name="kleren" value="kleren" />
+            <label class="drinkcard-cc card Categorie card5" for="kleren"><img src="static/icons/kleren.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="abonnementen" type="checkbox" name="abonnementen" value="abonnementen" />
+            <label class="drinkcard-cc card Categorie card5" for="abonnementen"><img src="static/icons/abonnementen.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="diensten" type="checkbox" name="diensten" value="diensten" />
+            <label class="drinkcard-cc card Categorie card5" for="diensten"><img src="static/icons/diensten.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="elektronica" type="checkbox" name="elektronica" value="elektronica" />
+            <label class="drinkcard-cc card Categorie card5" for="elektronica"><img src="static/icons/elektronica.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="gsm" type="checkbox" name="gsm" value="gsm" />
+            <label class="drinkcard-cc card Categorie card5" for="gsm"><img src="static/icons/gsm.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="huisdieren" type="checkbox" name="huisdieren" value="huisdieren" />
+            <label class="drinkcard-cc card Categorie card5" for="huisdieren"><img src="static/icons/huisdieren.png" class="img-fluid" alt="Responsive image"></label>
 </div>
 <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="woningC">
-            <input id="elektriciteit" type="checkbox" name="Subcategorie5" value="elektriciteit" />
+            <input id="elektriciteit" type="checkbox" name="elektriciteit" value="elektriciteit" />
             <label class="drinkcard-cc card Categorie card1" for="elektriciteit"><img src="static/icons/elektriciteit.png" class="img-fluid" alt="Responsive image"></label>
-            <input id="huis" type="checkbox" name="Subcategorie6" value="huis" />
+            <input id="huis" type="checkbox" name="huis" value="huis" />
             <label class="drinkcard-cc card Categorie card1" for="huis"><img src="static/icons/huis.png" class="img-fluid" alt="Responsive image"></label>
-            <input id="water" type="checkbox" name="Subcategorie7" value="water" />
+            <input id="water" type="checkbox" name="water" value="water" />
             <label class="drinkcard-cc card Categorie card1" for="water"><img src="static/icons/water.png" class="img-fluid" alt="Responsive image"></label>
-            <input id="internet" type="checkbox" name="Subcategorie8" value="internet" />
+            <input id="internet" type="checkbox" name="internet" value="internet" />
             <label class="drinkcard-cc card Categorie card1" for="internet"><img src="static/icons/internet.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="meubels" type="checkbox" name="meubels" value="meubels" />
+            <label class="drinkcard-cc card Categorie card1" for="meubels"><img src="static/icons/meubels.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="supplies" type="checkbox" name="supplies" value="supplies" />
+            <label class="drinkcard-cc card Categorie card1" for="supplies"><img src="static/icons/supplies.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="vuilnis" type="checkbox" name="vuilnis" value="vuilnis" />
+            <label class="drinkcard-cc card Categorie card1" for="vuilnis"><img src="static/icons/vuilnis.png" class="img-fluid" alt="Responsive image"></label>
 </div>
 <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="hobbiesC">
-            <input id="games" type="checkbox" name="Subcategorie9" value="games" />
+            <input id="games" type="checkbox" name="games" value="games" />
             <label class="drinkcard-cc card Categorie card4" for="games"><img src="static/icons/games.png" class="img-fluid" alt="Responsive image"></label>
-            <input id="sport" type="checkbox" name="Subcategorie10" value="sport" />
+            <input id="sport" type="checkbox" name="sport" value="sport" />
             <label class="drinkcard-cc card Categorie card4" for="sport"><img src="static/icons/sport.png" class="img-fluid" alt="Responsive image"></label>
-            <input id="tekenen" type="checkbox" name="Subcategorie11" value="tekenen" />
+            <input id="tekenen" type="checkbox" name="tekenen" value="tekenen" />
             <label class="drinkcard-cc card Categorie card4" for="tekenen"><img src="static/icons/tekenen.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="reizen" type="checkbox" name="reizen" value="reizen" />
+            <label class="drinkcard-cc card Categorie card4" for="reizen"><img src="static/icons/reizen.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="tuin" type="checkbox" name="tuin" value="tuin" />
+            <label class="drinkcard-cc card Categorie card4" for="tuin"><img src="static/icons/tuin.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="events" type="checkbox" name="events" value="events" />
+            <label class="drinkcard-cc card Categorie card4" for="events"><img src="static/icons/events.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="lezen" type="checkbox" name="lezen" value="lezen" />
+            <label class="drinkcard-cc card Categorie card4" for="lezen"><img src="static/icons/lezen.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="tv" type="checkbox" name="tv" value="tv" />
+            <label class="drinkcard-cc card Categorie card4" for="tv"><img src="static/icons/tv.png" class="img-fluid" alt="Responsive image"></label>
 </div>
 <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="andereC">
-            <input id="onderwijs" type="checkbox" name="Subcategorie12" value="onderwijs" />
-            <label class="drinkcard-cc card Categorie card5" for="onderwijs"><img src="static/icons/onderwijs.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="onderwijs" type="checkbox" name="onderwijs" value="onderwijs" />
+            <label class="drinkcard-cc card Categorie card7" for="onderwijs"><img src="static/icons/onderwijs.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="charity" type="checkbox" name="charity" value="charity" />
+            <label class="drinkcard-cc card Categorie card7" for="charity"><img src="static/icons/charity.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="belasting" type="checkbox" name="belasting" value="belasting" />
+            <label class="drinkcard-cc card Categorie card7" for="belasting"><img src="static/icons/belasting.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="gift" type="checkbox" name="gift" value="gift" />
+            <label class="drinkcard-cc card Categorie card7" for="gift"><img src="static/icons/gift.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="interest" type="checkbox" name="interest" value="interest" />
+            <label class="drinkcard-cc card Categorie card7" for="interest"><img src="static/icons/interest.png" class="img-fluid" alt="Responsive image"></label>
 </div>
     <div class="btn-group headerbudget" role="group" aria-label="Basic example">
             <button type="submit" class="btn btn-warning addbudgetsubmit">Nieuw budget</button>

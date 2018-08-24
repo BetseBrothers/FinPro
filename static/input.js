@@ -1,16 +1,9 @@
 setInterval(function displayCategorie(){
-    if (document.getElementById("form").soort.value == "shmekkels"){
-        document.getElementById("shmekkelCategorie").style.display = "flex";
-        document.getElementById("inkomstCategorie").style.display = "none";
-        document.getElementById("uitgaveCategorie").style.display = "none";
-    }
-    else if (document.getElementById("form").soort.value == "Inkomst"){
-        document.getElementById("shmekkelCategorie").style.display = "none";
+    if (document.getElementById("form").soort.value == "Inkomst"){
         document.getElementById("inkomstCategorie").style.display = "flex";
         document.getElementById("uitgaveCategorie").style.display = "none";
     }
     else if (document.getElementById("form").soort.value == "Uitgave"){
-        document.getElementById("shmekkelCategorie").style.display = "none";
         document.getElementById("inkomstCategorie").style.display = "none";
         document.getElementById("uitgaveCategorie").style.display = "flex";
         if (document.getElementById("form").Categorie.value == "woning"){
@@ -87,7 +80,6 @@ setInterval(function displayCategorie(){
         }
     }
     else {
-        document.getElementById("shmekkelCategorie").style.display = "none";
         document.getElementById("inkomstCategorie").style.display = "none";
         document.getElementById("uitgaveCategorie").style.display = "none";
         document.getElementById("voedingC").style.display = "none";
