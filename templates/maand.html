@@ -6,10 +6,10 @@ Maand
 <div class="container">
     <div class="no-padding btn-group">
                 <button class="btn groot-deel bg-warning">Maand</button>
-                <button class="btn deel bg-warning">Inkom</button>
-                <button class="btn deel bg-warning">Uitgave</button>
-                <button class="btn deel bg-warning">Winst</button>
-                <button class="btn deel bg-warning">Spaar%</button>
+                <button class="btn deel bg-warning">Ink.</button>
+                <button class="btn deel bg-warning">Uitg.</button>
+                <button class="btn deel bg-warning">Sav.</button>
+                <button class="btn deel bg-warning">Spaar-%</button>
     </div>
     {%for i in range(12)%}
     {%set total = namespace(a=0)%}
@@ -28,7 +28,7 @@ Maand
             {%if (((rowU[3][5] * 10 + rowU[3][6]) | int) + 12 )% 12 == (((date[0] * 10 + date[1]) | int) - i + 12 )% 12 and (rowU[3][2] * 10 + rowU[3][3]) | int == ((date[6] * 10 + date[7]) | int) - jaarStoring%}
             {%set totalU.a = totalU.a + rowU[2] %}{%endif%}{%endfor%}{{totalU.a}}€</button>
         <button class="btn deel" id="{{i}}winst">{{total.a - totalU.a}}€</button>
-        <button class="btn deel">{%if not total.a == 0%} {{(total.a - totalU.a) / total.a*100}}%{%else%}NA{%endif%}</button>
+        <button class="btn deel">{%if not total.a == 0%} {{(total.a - totalU.a) / total.a*100}}%{%else%}0%{%endif%}</button>
     </div>
     <div class="dropdownMaand" id="{{i}}transacties">
         {%for row in transacties%}

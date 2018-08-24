@@ -20,9 +20,9 @@
             </div>
         <button type="button" class="smallbudget btn ">{{ inkomsten }}€</button>
         <button type="button" class="smallbudget btn ">{{ inkomhuidig }}€</button>
-        <button type="button" class="smallbudget btn ">{{ (inkomhuidig / inkomsten * 100) | int }}%</button>
+        <button type="button" class="smallbudget btn ">{% if inkomsten > 0 %}{{ (inkomhuidig / inkomsten * 100) | int }}%{%else%}0%{% endif %}</button>
       </div>
-
+{%set i = namespace(a=0)%}
 {% for budget in budgetten %}      
 <div class="btn-group headerbudget" role="group" aria-label="Button group with nested dropdown">
     <div class="largebudget btn-group" role="group">
@@ -42,11 +42,11 @@
         </div>
     </div>
     <button type="button" class="smallbudget btn ">{{budget[2]}}€</button>
-    <button type="button" class="smallbudget btn ">NA€</button>
-    <button type="button" class="smallbudget btn ">NA%</button>
+    <button type="button" class="smallbudget btn ">{{budgethuidigen[i.a]}}€</button>
+    <button type="button" class="smallbudget btn ">{% if budget[2] > 0 %}{{ (budgethuidigen[i.a] / budget[2] * 100) | int }}%{%else%}0%{% endif %}</button>
 </div>
+{%set i.a = i.a + 1%}
 {% endfor %}
-
 <div class="btn-group headerbudget" role="group" aria-label="Basic example">
         <div class="largebudget btn-group" role="group">
                 <button id="btnGroupDrop1" type="button" class="expensebudget btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,9 +57,15 @@
                 </div>
             </div>
         <button type="button" class="smallbudget btn ">0.0€</button>
-        <button type="button" class="smallbudget btn ">NA€</button>
-        <button type="button" class="smallbudget btn ">NA%</button>
+        <button type="button" class="smallbudget btn ">{{totaaluitgaven - totaalhuidigbudget}}€</button>
+        <button type="button" class="smallbudget btn ">0%</button>
       </div>
+<div class="btn-group headerbudget" role="group" aria-label="Basic example">
+    <button type="button" class="largebudget btn btn-dark">Alle budgetten</button>
+    <button type="button" class="smallbudget btn ">{{ totaalbudget }}€</button>
+    <button type="button" class="smallbudget btn ">{{ totaaluitgaven }}€</button>
+    <button type="button" class="smallbudget btn ">{% if totaalbudget > 0 %}{{ (totaaluitgaven / totaalbudget * 100) | int }}%{%else%}0%{% endif %}</button>
+    </div>
 <div class="btn-group headerbudget" role="group" aria-label="Basic example">
     <button type="button" class="largebudget btn btn-warning">Balans</button>
     <button type="button" class="smallbudget btn btn-warning">Plan</button>
@@ -69,7 +75,7 @@
 <div class="btn-group headerbudget" role="group" aria-label="Basic example">
     <button type="button" class="largebudget btn btn-primary">Savings</button>
     <button type="button" class="smallbudget btn ">{{ (inkomsten - totaalbudget) | round(2) }}€</button>
-    <button type="button" class="smallbudget btn ">NA€</button>
-    <button type="button" class="smallbudget btn ">NA%</button>
+    <button type="button" class="smallbudget btn ">{{ (totaalinkomsten - totaaluitgaven) | round(2) }}€</button>
+    <button type="button" class="smallbudget btn ">{% if totaalinkomsten > 0 %}{{ (((totaalinkomsten - totaaluitgaven)/totaalinkomsten)*100) | round(2) }}%{%else%}0%{% endif %}</button>
     </div>
 {%endblock%}

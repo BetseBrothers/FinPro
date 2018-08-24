@@ -7,7 +7,7 @@
         <table class="full">
                 <tr>
                     <td class="tillend balans">{{row[2]}}</td>
-                    <td class="balans">{{row[1]}}</td>
+                    <td class="balans">{{row[1]}}€</td>
                 </tr>
             </table>
         </div>
@@ -17,7 +17,7 @@
             <table class="full">
                     <tr>
                         <td class="tillend balans">Rekeningen</td>
-                        <td class="balans">{{rekeningtotaal}}</td>
+                        <td class="balans">{{rekeningtotaal}}€</td>
                     </tr>
                 </table>
             </div>
@@ -27,7 +27,7 @@
         <table class="full">
             <tr>
                 <td class="tillend rekeningenbalans">{{row[2]}}</td>
-                <td class="rekeningenbalans">{{row[1]}}</td>
+                <td class="rekeningenbalans">{{row[1]}}€</td>
             </tr>
         </table>
     </div>
@@ -41,19 +41,11 @@
                 </tr>
             </table>
         </div>
-    <div class="form-control uitgaven">
-        <table class="full">
-                <tr>
-                    <td class="tillend balans">Schulden</td>
-                    <td class="balans">Optelling</td>
-                </tr>
-            </table>
-        </div>
     <div class="form-control totaalbalans">
         <table class="full">
             <tr>
-                <td class="tillend balans">Totaal</td>
-                <td class="balans">{{totaal}}</td>
+                <td class="tillend balans">Vermogen</td>
+                <td class="balans">{{totaal}}€</td>
             </tr>
         </table>
     </div>
@@ -61,7 +53,7 @@
         <table class="full">
             <tr>
                 <td class="tillend rekeningenbalans">Inkomsten</td>
-                <td class="rekeningenbalans">Optelling</td>
+                <td class="rekeningenbalans">{{inkomsten}}€</td>
             </tr>
         </table>
     </div>
@@ -69,7 +61,7 @@
         <table class="full">
             <tr>
                 <td class="tillend schuldenbalans">Uitgaven</td>
-                <td class="schuldenbalans">Optelling</td>
+                <td class="schuldenbalans">{{uitgaven}}€</td>
             </tr>
         </table>
     </div>

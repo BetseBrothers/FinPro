@@ -141,7 +141,21 @@ def balans():
     for row in rowb:
         if not row[2] == "smekkels" and not row[2] == "cash":
             rekeningtotaal += row[1]
-    return render_template("balans.html", rekeningen=rowb, totaal=balans, rekeningtotaal=rekeningtotaal)
+    # Bereken totaal van inkomsten en uitgaven aller tijden
+    db = db_connect('pythonsqlite.db')
+    selecteer = db.execute("SELECT * FROM Transacties WHERE userid=? and Soort=?",
+                            (session["user_id"], "Inkomst"))
+    inkomsten = selecteer.fetchall()
+    alltimeinkomsten = 0
+    for inkomst in inkomsten:
+        alltimeinkomsten += inkomst[2]
+    selecteer2 = db.execute("SELECT * FROM Transacties WHERE userid=? and Soort=?",
+                            (session["user_id"], "Uitgave"))
+    uitgaven = selecteer2.fetchall()
+    alltimeuitgaven = 0
+    for uitgave in uitgaven:
+        alltimeuitgaven += uitgave[2]
+    return render_template("balans.html", rekeningen=rowb, totaal=balans, rekeningtotaal=rekeningtotaal, inkomsten=alltimeinkomsten, uitgaven=alltimeuitgaven)
 @app.route("/budget", methods=["POST","GET"])
 @login_required
 def budget():
@@ -172,11 +186,36 @@ def budget():
         db = db_connect('pythonsqlite.db')
         rowsb = db.execute("SELECT * FROM Budgetten WHERE userid = ? ",
                           (session["user_id"],))
-        rowb = rowsb.fetchone()
-        inkomst = rowb[1]
-        # Zet bij juiste budgetten
-            # Bereken huidige totaal van budgetten
-        return render_template("budget.html", inkomsten=inkomst, inkomhuidig=inkomhuidig, budgetten=budgetten, totaalbudget=totaalbudget)
+        rowb = rowsb.fetchall()
+        # for loop met budgetten: voor elk budget: iterate over alle categorieën en select transacties als nt NULL
+        budgethuidigen = []
+        i = 0
+        for budget in rowb:
+            budgethuidigen.append(0)
+            for categorie in range(32):
+                if budget[categorie + 3] is not "NULL":
+                    select = db.execute("SELECT * FROM Transacties WHERE userid=? and Subcategorie=? and Datum >= date('now','start of month') and Datum < date('now','start of month','+1 month')",
+                          (session["user_id"], budget[categorie + 3]))
+                    transacties = select.fetchall()
+                    for transactie in transacties:
+                        budgethuidigen[i] += transactie[2]
+            i = i + 1
+        totaalhuidigbudget = sum(budgethuidigen)
+        # bereken totaal van uitgaven in huidige maand
+        selecteer = db.execute("SELECT * FROM Transacties WHERE userid=? and Soort=? and Datum >= date('now','start of month') and Datum < date('now','start of month','+1 month')",
+                          (session["user_id"], "Uitgave"))
+        uitgaven = selecteer.fetchall()
+        totaaluitgaven = 0
+        for uitgave in uitgaven:
+            totaaluitgaven += uitgave[2]
+        # bereken totaal van inkomsten in huidige maand
+        selecteer = db.execute("SELECT * FROM Transacties WHERE userid=? and Soort=? and Datum >= date('now','start of month') and Datum < date('now','start of month','+1 month')",
+                          (session["user_id"], "Inkomst"))
+        inkomsten = selecteer.fetchall()
+        totaalinkomsten = 0
+        for inkomst in inkomsten:
+            totaalinkomsten += inkomst[2]
+        return render_template("budget.html", inkomsten=inkomst, inkomhuidig=inkomhuidig, budgetten=budgetten, totaalbudget=totaalbudget, budgethuidigen=budgethuidigen, totaalhuidigbudget=totaalhuidigbudget, totaaluitgaven=totaaluitgaven, totaalinkomsten=totaalinkomsten)
     else:
         conn = sqlite3.connect('pythonsqlite.db')
         db = conn.cursor()
@@ -214,7 +253,6 @@ def addbudget():
         # commit changes
         conn.commit()
         return redirect("/budget")
-<<<<<<< HEAD
 
 @app.route("/jaar")
 @login_required
@@ -226,7 +264,6 @@ def jaar():
     transacties = rowsI.fetchall()
     transactiesU = rowsU.fetchall()
     return render_template("jaar.html", transacties=transacties, Uitgaven=transactiesU, date=time.strftime("%x"))
-=======
 @app.route("/verwijderbudget", methods=["POST"])
 @login_required
 def verwijderbudget():
@@ -237,4 +274,3 @@ def verwijderbudget():
                         (session["user_id"], request.form.get("verwijder")))
     conn.commit()
     return redirect("/budget")
->>>>>>> cdea196f5714194ebcf0daaa9d05fb70545f2482
