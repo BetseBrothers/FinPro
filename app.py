@@ -252,4 +252,7 @@ def overschrijving():
                         (request.form.get("Hoeveelheid"), request.form.get("van"), session["user_id"]))
         conn.commit()
         return redirect("/balans")
-
+@app.route("/lening")
+@login_required
+def lening():
+    return render_template("lening.html")

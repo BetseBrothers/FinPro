@@ -1,0 +1,17 @@
+{%extends "layoutInput.html"%}
+{% block titleInput %}
+overschrijving
+{%endblock%}
+{%block input%}
+<div class="container-fluid">
+    <div class="form-control lening huge">Lening</div>
+    <div class="form-control lening big"><p>Een lening wordt in deze app niet weergegeven, in de plaats daarvan moet je eerst enkel als uitgave of belegging ingeven wat je 
+        met je eigen geld betaalt. Daarna geef je de afbetalingen van de lening/schuld telkens in wanneer je deze moet betalen, je geeft deze dan aan als uitgave of belegging.
+        </p>
+        In plaats van een schuld bij te houden, is de bedoeling dus dat je balans noch door de belegging, noch door de schuld beïnvloed wordt aangezien deze elkaar uitbalanceren.
+        De belegging zelf is dus aanvankelijk enkel het deel dat je met eigen geld verworven hebt, en groeit dan geleidelijk wanneer je je lening afbetaalt. Dit zorgt er ook voor dat een afbetaling van bv.
+        een huis maandelijks als belegging beschouwd wordt ipv. als uitgave, wat beter overeenkomt met de realiteit.
+    </div>
+    <div class="form-control lening"><p>Pas op!</p>Geld lenen kost ook geld.</div>
+</div>
+{%endblock%}
