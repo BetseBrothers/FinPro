@@ -210,7 +210,6 @@ def addbudget():
         # commit changes
         conn.commit()
         return redirect("/budget")
-<<<<<<< HEAD
 
 @app.route("/jaar")
 @login_required
@@ -222,7 +221,6 @@ def jaar():
     transacties = rowsI.fetchall()
     transactiesU = rowsU.fetchall()
     return render_template("jaar.html", transacties=transacties, Uitgaven=transactiesU, date=time.strftime("%x"))
-=======
 @app.route("/verwijderbudget", methods=["POST"])
 @login_required
 def verwijderbudget():
@@ -233,4 +231,25 @@ def verwijderbudget():
                         (session["user_id"], request.form.get("verwijder")))
     conn.commit()
     return redirect("/budget")
->>>>>>> cdea196f5714194ebcf0daaa9d05fb70545f2482
+
+
+@app.route("/overschrijving", methods=["POST","GET"])
+@login_required
+def overschrijving():
+    if request.method == "GET":
+        db = db_connect('pythonsqlite.db')
+        rows = db.execute("SELECT * FROM rekeningen WHERE userid = ? ",
+                            (session["user_id"],))
+        rekeningen = rows.fetchall()
+        return render_template("overschrijving.html", rekeningen=rekeningen)
+    else:
+        conn = sqlite3.connect('pythonsqlite.db')
+        db = conn.cursor()
+        db.execute('UPDATE rekeningen SET balans=balans+? where rekeningnaam=? AND userid=?', 
+                        (request.form.get("Hoeveelheid"), request.form.get("naar"), session["user_id"]))
+        conn.commit()
+        db.execute('UPDATE rekeningen SET balans=balans-? where rekeningnaam=? AND userid=?', 
+                        (request.form.get("Hoeveelheid"), request.form.get("van"), session["user_id"]))
+        conn.commit()
+        return redirect("/balans")
+

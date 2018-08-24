@@ -292,3 +292,11 @@ p{margin-bottom:.3em;}
     height: 27%;
     width: 27% !important;
 }
+.form2 {
+  text-align: center;
+  height: 10%;
+  font-size: x-large;
+}
+.trans-padding {
+  padding-top: 2vh;
+}
