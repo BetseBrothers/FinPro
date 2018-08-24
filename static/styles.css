@@ -292,3 +292,25 @@ p{margin-bottom:.3em;}
     height: 27%;
     width: 27% !important;
 }
+.form2 {
+  text-align: center;
+  height: 10%;
+  font-size: x-large;
+}
+.trans-padding {
+  padding-top: 2vh;
+}
+.lening {
+  text-align: center;
+  height: 10%;
+  font-size: large;
+  color: rgb(161, 0, 0);
+}
+.huge {
+  font-size: xx-large;
+}
+.big {
+  font-size: medium;
+  height: 70%;
+  text-align: justify;
+}

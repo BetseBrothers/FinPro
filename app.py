@@ -274,3 +274,27 @@ def verwijderbudget():
                         (session["user_id"], request.form.get("verwijder")))
     conn.commit()
     return redirect("/budget")
+
+@app.route("/overschrijving", methods=["POST","GET"])
+@login_required
+def overschrijving():
+    if request.method == "GET":
+        db = db_connect('pythonsqlite.db')
+        rows = db.execute("SELECT * FROM rekeningen WHERE userid = ? ",
+                            (session["user_id"],))
+        rekeningen = rows.fetchall()
+        return render_template("overschrijving.html", rekeningen=rekeningen)
+    else:
+        conn = sqlite3.connect('pythonsqlite.db')
+        db = conn.cursor()
+        db.execute('UPDATE rekeningen SET balans=balans+? where rekeningnaam=? AND userid=?', 
+                        (request.form.get("Hoeveelheid"), request.form.get("naar"), session["user_id"]))
+        conn.commit()
+        db.execute('UPDATE rekeningen SET balans=balans-? where rekeningnaam=? AND userid=?', 
+                        (request.form.get("Hoeveelheid"), request.form.get("van"), session["user_id"]))
+        conn.commit()
+        return redirect("/balans")
+@app.route("/lening")
+@login_required
+def lening():
+    return render_template("lening.html")

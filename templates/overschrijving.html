@@ -1,0 +1,26 @@
+{%extends "layoutInput.html"%}
+{% block titleInput %}
+overschrijving
+{%endblock%}
+{%block input%}
+<div class="container-fluid">
+<form action="/overschrijving" method="post" class="center-block" id="form">
+    <div class="form-control form2 trans-padding">Van:</div>
+    <div class="cc-selector scrolling-wrapper-flexbox form2">
+            {%for row in rekeningen %}
+            <input id={{row[2]}} required type="radio" name="van" value={{row[2]}} />
+            <label class="drinkcard-cc card rekeningkiezer" for={{row[2]}}>{{row[2]}}</label>
+            {% endfor %}
+    </div>
+    <div class="form-control form2 trans-padding">Naar:</div>
+    <div class="cc-selector scrolling-wrapper-flexbox form2">
+            {%for row in rekeningen %}
+            <input id={{row[2]}}n required type="radio" name="naar" value={{row[2]}} />
+            <label class="drinkcard-cc card rekeningkiezer" for={{row[2]}}n>{{row[2]}}</label>
+            {% endfor %}
+    </div>
+    <input name="Hoeveelheid" placeholder="Bedrag" type="number" pattern="[0-9]*" step="any" required class="form-control form2"/>
+    <button type="submit" class="form-control form2">Schrijf Over!</button>
+</form>
+</div>
+{%endblock%}
