@@ -167,7 +167,9 @@ def budget():
         totaalbudget = 0
         for row in budgetten:
             totaalbudget += row[2]
-        # Neem alle transacties van huidige maand per categorie
+        # Selecteer alle budgetten en selecteer voor elke categorie erin alle transacties van huidige maand
+        # en voeg toe aan totaal van dat budget
+
         # Zet bij juiste budgetten
             # Bereken huidige totaal van budgetten
         return render_template("budget.html", inkomsten=inkomst, inkomhuidig=inkomhuidig, budgetten=budgetten, totaalbudget=totaalbudget)
@@ -203,11 +205,12 @@ def addbudget():
         conn = sqlite3.connect('pythonsqlite.db')
         db = conn.cursor()
         # Insert new income
-        db.execute("INSERT INTO Budgetten (userid, naam, bedrag, restaurant, winkel, openbaarVervoer, auto, elektriciteit, huis, water, internet, games, sport, tekenen, onderwijs) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                          (session["user_id"], request.form.get("naam"), request.form.get("bedrag"), request.form.get("Subcategorie1"), request.form.get("Subcategorie2"), request.form.get("Subcategorie3"), request.form.get("Subcategorie4"), request.form.get("Subcategorie5"), request.form.get("Subcategorie6"), request.form.get("Subcategorie7"), request.form.get("Subcategorie8"), request.form.get("Subcategorie9"), request.form.get("Subcategorie10"), request.form.get("Subcategorie11"), request.form.get("Subcategorie12")))
+        db.execute("INSERT INTO Budgetten (userid, naam, bedrag, restaurant, winkel, openbaarVervoer, auto, verzekering, dokters, kleren, abonnementen, diensten, elektronica, gsm, huisdieren, elektriciteit, huis, water, internet, meubels, supplies, vuilnis, games, sport, tekenen, reizen, tuin, events, lezen, tv, onderwijs, charity, belasting, gift, interest) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                          (session["user_id"], request.form.get("naam"), request.form.get("bedrag"), request.form.get("restaurant"), request.form.get("winkel"), request.form.get("openbaarVervoer"), request.form.get("auto"), request.form.get("verzekering"), request.form.get("dokters"), request.form.get("kleren"), request.form.get("abonnementen"), request.form.get("diensten"), request.form.get("elektronica"), request.form.get("gsm"), request.form.get("huisdieren"), request.form.get("elektriciteit"), request.form.get("huis"), request.form.get("water"), request.form.get("internet"), request.form.get("meubels"), request.form.get("supplies"), request.form.get("vuilnis"), request.form.get("games"), request.form.get("sport"), request.form.get("tekenen"), request.form.get("reizen"), request.form.get("tuin"), request.form.get("events"), request.form.get("lezen"), request.form.get("tv"), request.form.get("onderwijs"), request.form.get("charity"), request.form.get("belasting"), request.form.get("gift"), request.form.get("interest")))
         # commit changes
         conn.commit()
         return redirect("/budget")
+<<<<<<< HEAD
 
 @app.route("/jaar")
 @login_required
@@ -219,3 +222,15 @@ def jaar():
     transacties = rowsI.fetchall()
     transactiesU = rowsU.fetchall()
     return render_template("jaar.html", transacties=transacties, Uitgaven=transactiesU, date=time.strftime("%x"))
+=======
+@app.route("/verwijderbudget", methods=["POST"])
+@login_required
+def verwijderbudget():
+    conn = sqlite3.connect('pythonsqlite.db')
+    db = conn.cursor()
+    # Delete budget
+    db.execute("DELETE FROM Budgetten WHERE userid=? and naam=?",
+                        (session["user_id"], request.form.get("verwijder")))
+    conn.commit()
+    return redirect("/budget")
+>>>>>>> cdea196f5714194ebcf0daaa9d05fb70545f2482

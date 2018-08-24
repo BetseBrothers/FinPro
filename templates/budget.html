@@ -30,13 +30,15 @@
         {{budget[1]}}
         </button>
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                {% for categorie in range(12) %}
+                {% for categorie in range(32) %}
                 {% if budget[categorie + 4] %}
                 <label class="drinkcard-cc card Categorie budgetcats" for="winkel"><img src="static/icons/{{budget[categorie + 4]}}.png" class="img-fluid" alt="Responsive image"></label>
                 {% endif %}
                 {% endfor %}
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Verwijder budget</a>
+                <form action="/verwijderbudget" method="post">
+                <button name="verwijder" value="{{ budget[1] }}" class="dropdown-item">Verwijder budget</button>
+                </form>
         </div>
     </div>
     <button type="button" class="smallbudget btn ">{{budget[2]}}€</button>
@@ -66,7 +68,7 @@
     </div>
 <div class="btn-group headerbudget" role="group" aria-label="Basic example">
     <button type="button" class="largebudget btn btn-primary">Savings</button>
-    <button type="button" class="smallbudget btn ">{{ inkomsten - totaalbudget }}€</button>
+    <button type="button" class="smallbudget btn ">{{ (inkomsten - totaalbudget) | round(2) }}€</button>
     <button type="button" class="smallbudget btn ">NA€</button>
     <button type="button" class="smallbudget btn ">NA%</button>
     </div>
