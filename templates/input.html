@@ -20,12 +20,18 @@
                         <label class="drinkcard-cc card Shmekkels" for="Uitgave">Uitgave</label>
                 </div>
                 <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="inkomstCategorie">
-                                <input id="a" type="radio" name="Categorie" value="shmekkels" />
-                                <label class="drinkcard-cc card Categorie" for="a">shmekkels</label>
-                                <input id="b" type="radio" name="Categorie" value="Inkomst" />
-                                <label class="drinkcard-cc card Categorie" for="b">Inkomst</label>
-                                <input id="c" type="radio" name="Categorie" value="Uitgave" />
-                                <label class="drinkcard-cc card Categorie" for="c">Uitgave</label>
+                                <input id="loon" type="radio" name="Categorie" value="loon" />
+                                <label class="drinkcard-cc card Categorie card1" for="loon"><img src="static/icons/loon1.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="thuis" type="radio" name="Categorie" value="thuis" />
+                                <label class="drinkcard-cc card Categorie card5" for="thuis"><img src="static/icons/thuis.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="terugbetaling" type="radio" name="Categorie" value="terugbetaling" />
+                                <label class="drinkcard-cc card Categorie card2" for="terugbetaling"><img src="static/icons/terugbetaling.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="onderneming" type="radio" name="Categorie" value="onderneming" />
+                                <label class="drinkcard-cc card Categorie card3" for="onderneming"><img src="static/icons/onderneming1.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="beleggingen" type="radio" name="Categorie" value="beleggingen" />
+                                <label class="drinkcard-cc card Categorie card6" for="beleggingen"><img src="static/icons/beleggingen.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="varia" type="radio" name="Categorie" value="varia" />
+                                <label class="drinkcard-cc card Categorie card7" for="varia"><img src="static/icons/andere.png" class="img-fluid" alt="Responsive image"></label>
                 </div>
                 <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="uitgaveCategorie">
                                 <input id="woning" type="radio" name="Categorie" value="woning" />
@@ -120,6 +126,50 @@
                                 <label class="drinkcard-cc card Categorie card7" for="gift"><img src="static/icons/gift.png" class="img-fluid" alt="Responsive image"></label>
                                 <input id="interest" type="radio" name="Subcategorie" value="interest" />
                                 <label class="drinkcard-cc card Categorie card7" for="interest"><img src="static/icons/interest.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="loonC">
+                                <input id="loons" type="radio" name="Subcategorie" required value="loon" />
+                                <label class="drinkcard-cc card Categorie card1" for="loons"><img src="static/icons/loon2.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="bonus" type="radio" name="Subcategorie" value="bonus" />
+                                <label class="drinkcard-cc card Categorie card1" for="bonus"><img src="static/icons/bonus.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="thuisC">
+                                <input id="geschenken" type="radio" name="Subcategorie" required value="geschenken" />
+                                <label class="drinkcard-cc card Categorie card5" for="geschenken"><img src="static/icons/gift.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="zakgeld" type="radio" name="Subcategorie" value="zakgeld" />
+                                <label class="drinkcard-cc card Categorie card5" for="zakgeld"><img src="static/icons/zakgeld.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="erfenis" type="radio" name="Subcategorie" value="erfenis" />
+                                <label class="drinkcard-cc card Categorie card5" for="erfenis"><img src="static/icons/erfenis.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="klusjes" type="radio" name="Subcategorie" value="klusjes" />
+                                <label class="drinkcard-cc card Categorie card5" for="klusjes"><img src="static/icons/klusjes.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="terugbetalingC">
+                                <input id="terugbetalingS" type="radio" name="Subcategorie" required value="terugbetaling" />
+                                <label class="drinkcard-cc card Categorie card2" for="terugbetalingS"><img src="static/icons/terugbetaling.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="beurs" type="radio" name="Subcategorie" value="beurs" />
+                                <label class="drinkcard-cc card Categorie card2" for="beurs"><img src="static/icons/onderwijs.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="ziekteverzekering" type="radio" name="Subcategorie" value="ziekteverzekering" />
+                                <label class="drinkcard-cc card Categorie card2" for="ziekteverzekering"><img src="static/icons/ziekteverzekering.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="ondernemingC">
+                                <input id="loon3" type="radio" name="Subcategorie" required value="loon3" />
+                                <label class="drinkcard-cc card Categorie card3" for="loon3"><img src="static/icons/loon2.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="dividend2" type="radio" name="Subcategorie" value="dividend2" />
+                                <label class="drinkcard-cc card Categorie card3" for="dividend2"><img src="static/icons/dividend.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="beleggingenC">
+                                <input id="huur" type="radio" name="Subcategorie" required value="huur" />
+                                <label class="drinkcard-cc card Categorie card6" for="huur"><img src="static/icons/huur.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="dividend" type="radio" name="Subcategorie" value="dividend" />
+                                <label class="drinkcard-cc card Categorie card6" for="dividend"><img src="static/icons/dividend.png" class="img-fluid" alt="Responsive image"></label>
+                </div>
+                <div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="variaC">
+                                <input id="interest1" type="radio" name="Subcategorie" required value="interest1" />
+                                <label class="drinkcard-cc card Categorie card6" for="interest1"><img src="static/icons/interest1.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="verkoop" type="radio" name="Subcategorie" value="verkoop" />
+                                <label class="drinkcard-cc card Categorie card6" for="verkoop"><img src="static/icons/verkoop.png" class="img-fluid" alt="Responsive image"></label>
+                                <input id="andere1" type="radio" name="Subcategorie" value="andere" />
+                                <label class="drinkcard-cc card Categorie card6" for="andere1"><img src="static/icons/andere.png" class="img-fluid" alt="Responsive image"></label>
                 </div>
                 <button type="submit" class="form-control form1 add">Voeg toe</button>
 </div>
