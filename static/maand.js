@@ -16,7 +16,12 @@ function maand(maand) {
 }
 maand(mand);
 function flap(i){
-    document.getElementById(i + "transacties").style.display = "flex";
+    if (document.getElementById(i + "transacties").style.display == "flex"){
+        document.getElementById(i + "transacties").style.display = "none";
+    }
+    else {
+        document.getElementById(i + "transacties").style.display = "flex";
+    }
 }
 document.getElementById(0).onclick = function() {
     flap(0);

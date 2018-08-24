@@ -1,0 +1,29 @@
+{% extends "layoutHome.html" %}
+{% block homeTitle %}
+Jaar
+{%endblock%}
+{%block homeBody%}
+<div class="container">
+    <div class="no-padding btn-group">
+                <button class="btn groot-deel bg-warning">Jaar</button>
+                <button class="btn deel bg-warning">Inkom</button>
+                <button class="btn deel bg-warning">Uitgave</button>
+                <button class="btn deel bg-warning">Winst</button>
+                <button class="btn deel bg-warning">Spaar%</button>
+    </div>
+    {%for i in range((date[6] | int * 10 + date[7] | int) - 16)%}
+    {%set total = namespace(a=0)%}
+    {%set totalU = namespace(a=0)%}
+    <div class="no-padding btn-group">
+                <button class="btn groot-deel bg-success">20{{(date[6] | int * 10 + date[7] | int) - i}}</button>
+                <button class="btn deel">{%for row in transacties %}
+                    {%if (row[3][2] | int * 10 + row[3][3] | int) == (date[6] | int * 10 + date[7] | int) - i%}
+                    {%set total.a = total.a + row[2] %}{%endif%}{%endfor%}{{total.a}}€</button>
+                <button class="btn deel">{%for rowU in Uitgaven %}
+                        {%if (rowU[3][2] | int * 10 + rowU[3][3] | int) == (date[6] | int * 10 + date[7] | int) - i%}
+                        {%set totalU.a = totalU.a + rowU[2] %}{%endif%}{%endfor%}{{totalU.a}}€</button>
+                <button class="btn deel">{{total.a - totalU.a}}€</button>
+                <button class="btn deel">{%if not total.a == 0%} {{(total.a - totalU.a) / total.a*100}}%{%else%}NA{%endif%}</button>
+    </div>
+    {%endfor%}
+{%endblock%}

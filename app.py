@@ -214,6 +214,19 @@ def addbudget():
         # commit changes
         conn.commit()
         return redirect("/budget")
+<<<<<<< HEAD
+
+@app.route("/jaar")
+@login_required
+def jaar():
+    db = db_connect('pythonsqlite.db')
+    dbU = db_connect('pythonsqlite.db')
+    rowsI = db.execute("SELECT * FROM Transacties WHERE userid=? AND soort='Inkomst'", (session["user_id"],))
+    rowsU = dbU.execute("SELECT * FROM Transacties WHERE userid=? AND soort='Uitgave'", (session["user_id"],))
+    transacties = rowsI.fetchall()
+    transactiesU = rowsU.fetchall()
+    return render_template("jaar.html", transacties=transacties, Uitgaven=transactiesU, date=time.strftime("%x"))
+=======
 @app.route("/verwijderbudget", methods=["POST"])
 @login_required
 def verwijderbudget():
@@ -224,3 +237,4 @@ def verwijderbudget():
                         (session["user_id"], request.form.get("verwijder")))
     conn.commit()
     return redirect("/budget")
+>>>>>>> cdea196f5714194ebcf0daaa9d05fb70545f2482

@@ -247,9 +247,12 @@ p{margin-bottom:.3em;}
   margin-right: 0%;
 }
 .small {
-  height: 6vh;
-  width: 6vh !important;
+  height: 4vh;
+  width: 4vh !important;
   padding: 5px;
+}
+.maand-klein {
+  height: 4%;
 }
 .end {
   padding-left: 10% !important;
