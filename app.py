@@ -169,7 +169,11 @@ def budget():
             totaalbudget += row[2]
         # Selecteer alle budgetten en selecteer voor elke categorie erin alle transacties van huidige maand
         # en voeg toe aan totaal van dat budget
-
+        db = db_connect('pythonsqlite.db')
+        rowsb = db.execute("SELECT * FROM Budgetten WHERE userid = ? ",
+                          (session["user_id"],))
+        rowb = rowsb.fetchone()
+        inkomst = rowb[1]
         # Zet bij juiste budgetten
             # Bereken huidige totaal van budgetten
         return render_template("budget.html", inkomsten=inkomst, inkomhuidig=inkomhuidig, budgetten=budgetten, totaalbudget=totaalbudget)
