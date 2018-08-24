@@ -88,7 +88,7 @@ body {
   font-size: 25px;
   text-align: center;
   text-transform: capitalize;
-  border: hidden;
+  border: 1px solid rgb(0, 0, 0);
   margin-left: 1px;
   margin-bottom: 0%;
   padding: 10px;
@@ -101,7 +101,6 @@ body {
   margin-top: 3px;
   font-size:20px;
   text-align: center;
-
 }
 .preview {
   flex-wrap: nowrap;
@@ -125,17 +124,18 @@ body {
 
 .cc-selector input:active +.drinkcard-cc{opacity: .9;}
 .cc-selector input:checked +.drinkcard-cc{
-    background-color: #4193ff;
+    background-color: #ffad41 !important;
     font-weight: bold;
-    padding: 0px;
+    filter: invert(100%);
 }
 .drinkcard-cc{
     cursor:pointer;
+    border: 1px solid rgb(0, 0, 0);
     background-color: #ffffff;
     background-size:contain;
     background-repeat:no-repeat;
     display:inline-block;
-    color: #495057;
+    color: #000000;
     width:40%;height:100%;
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
@@ -211,4 +211,29 @@ p{margin-bottom:.3em;}
     height: 38px;
     margin: 1px;
     width: 100%;
+}
+.addbudget {
+    width: 100%;
+    font-weight: bold;
+    color: #ffffff;
+}
+.addbudgetbedrag {
+    width: 100%;
+    color: rgb(0, 0, 0);
+    background-color: #dddddd;
+}
+.addbudgetsubmit {
+    width: 100%;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+.addincomes {
+    border: 2px solid #000000;
+    padding: 1px;
+    margin: 0%;
+}
+.budgetcats {
+    margin: 2%;
+    height: 27%;
+    width: 27% !important;
 }

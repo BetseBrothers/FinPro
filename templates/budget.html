@@ -11,46 +11,52 @@
                 <button id="btnGroupDrop1" type="button" class="expensebudget btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Inkomsten
                 </button>
-                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#">Verander inkomsten</a>
+                <div class="dropdown-menu addincomes" aria-labelledby="btnGroupDrop1">
+                        <form action="/budget" method="post" class="dropdown-item addincomes" id="form">
+                            <input autocomplete="off" required autofocus name="inkomsten" placeholder="Bedrag" type="number" step="0.1" class="btn btn-success" id="input"/>
+                            <button type="submit" class="btn btn-warning">Update</button>
+                        </form>
                 </div>
             </div>
-        <button type="button" class="smallbudget btn ">100$</button>
-        <button type="button" class="smallbudget btn ">18$</button>
-        <button type="button" class="smallbudget btn ">18%</button>
+        <button type="button" class="smallbudget btn ">{{ inkomsten }}€</button>
+        <button type="button" class="smallbudget btn ">{{ inkomhuidig }}€</button>
+        <button type="button" class="smallbudget btn ">{{ (inkomhuidig / inkomsten * 100) | int }}%</button>
       </div>
 
+{% for budget in budgetten %}      
 <div class="btn-group headerbudget" role="group" aria-label="Button group with nested dropdown">
     <div class="largebudget btn-group" role="group">
         <button id="btnGroupDrop1" type="button" class="expensebudget btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Kotuitgaven
+        {{budget[1]}}
         </button>
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <a class="dropdown-item" href="#">Categorie 1</a>
-                <a class="dropdown-item" href="#">Categorie 2</a>
-                <a class="dropdown-item" href="#">Categorie 3</a>
+                {% for categorie in range(12) %}
+                {% if budget[categorie + 4] %}
+                <label class="drinkcard-cc card Categorie budgetcats" for="winkel"><img src="static/icons/{{budget[categorie + 4]}}.png" class="img-fluid" alt="Responsive image"></label>
+                {% endif %}
+                {% endfor %}
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Verander budget</a>
+                <a class="dropdown-item" href="#">Verwijder budget</a>
         </div>
     </div>
-    <button type="button" class="smallbudget btn ">100$</button>
-    <button type="button" class="smallbudget btn ">20$</button>
-    <button type="button" class="smallbudget btn ">20%</button>
+    <button type="button" class="smallbudget btn ">{{budget[2]}}€</button>
+    <button type="button" class="smallbudget btn ">NA€</button>
+    <button type="button" class="smallbudget btn ">NA%</button>
 </div>
+{% endfor %}
+
 <div class="btn-group headerbudget" role="group" aria-label="Basic example">
         <div class="largebudget btn-group" role="group">
                 <button id="btnGroupDrop1" type="button" class="expensebudget btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Overige
                 </button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#">Verander budget</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Nieuw budget</a>
+                        <a class="dropdown-item" href="/addbudget">Nieuw budget</a>
                 </div>
             </div>
-        <button type="button" class="smallbudget btn ">10$</button>
-        <button type="button" class="smallbudget btn ">0$</button>
-        <button type="button" class="smallbudget btn ">0%</button>
+        <button type="button" class="smallbudget btn ">0.0€</button>
+        <button type="button" class="smallbudget btn ">NA€</button>
+        <button type="button" class="smallbudget btn ">NA%</button>
       </div>
 <div class="btn-group headerbudget" role="group" aria-label="Basic example">
     <button type="button" class="largebudget btn btn-warning">Balans</button>
@@ -60,8 +66,8 @@
     </div>
 <div class="btn-group headerbudget" role="group" aria-label="Basic example">
     <button type="button" class="largebudget btn btn-primary">Savings</button>
-    <button type="button" class="smallbudget btn ">10$</button>
-    <button type="button" class="smallbudget btn ">0$</button>
-    <button type="button" class="smallbudget btn ">0%</button>
+    <button type="button" class="smallbudget btn ">{{ inkomsten - totaalbudget }}€</button>
+    <button type="button" class="smallbudget btn ">NA€</button>
+    <button type="button" class="smallbudget btn ">NA%</button>
     </div>
 {%endblock%}

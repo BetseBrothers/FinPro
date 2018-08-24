@@ -39,7 +39,7 @@ def test():
                           (newbalans, session["user_id"], request.form.get("rekening")))
         # commit changes
         conn.commit()
-        return render_template("rekening.html")
+        return render_template("home.html")
 
 @app.route("/rekening", methods=["POST","GET"])
 @login_required
@@ -141,7 +141,59 @@ def balans():
         if not row[2] == "smekkels" and not row[2] == "cash":
             rekeningtotaal += row[1]
     return render_template("balans.html", rekeningen=rowb, totaal=balans, rekeningtotaal=rekeningtotaal)
-@app.route("/budget")
+@app.route("/budget", methods=["POST","GET"])
 @login_required
 def budget():
-    return render_template("budget.html")
+    if request.method == "GET":
+        # Get data for Inkomsten
+        db = db_connect('pythonsqlite.db')
+        rowsb = db.execute("SELECT * FROM Inkomsten WHERE userid = ? ",
+                          (session["user_id"],))
+        rowb = rowsb.fetchone()
+        inkomst = rowb[1]
+        # Get data for Status van inkomsten: enkel voor huidige maand
+        rowsb = db.execute("SELECT * FROM Transacties WHERE Userid = ? and Soort = ? and Datum >= date('now','start of month') and Datum < date('now','start of month','+1 month') ",
+                          (session["user_id"], "Inkomst",))
+        rowb = rowsb.fetchall()
+        inkomhuidig = 0
+        for row in rowb:
+            inkomhuidig += row[2]
+        # Neem alle budgetten van huidige user voor op pagina te zetten
+        rowsb = db.execute("SELECT * FROM Budgetten WHERE Userid = ?",
+                          (session["user_id"],))
+        budgetten = rowsb.fetchall()
+            # Bereken totaal van alle budgetten
+        totaalbudget = 0
+        for row in budgetten:
+            totaalbudget += row[2]
+        # Neem alle transacties van huidige maand per categorie
+        # Zet bij juiste budgetten
+            # Bereken huidige totaal van budgetten
+        return render_template("budget.html", inkomsten=inkomst, inkomhuidig=inkomhuidig, budgetten=budgetten, totaalbudget=totaalbudget)
+    else:
+        conn = sqlite3.connect('pythonsqlite.db')
+        db = conn.cursor()
+        # Delete last income
+        db.execute("DELETE FROM Inkomsten WHERE userid=?",
+                          (session["user_id"],))
+        conn.commit()
+        # Insert transactie into database
+        db.execute("INSERT INTO Inkomsten (userid, inkomsten) VALUES(?,?)",
+                            (session["user_id"], request.form.get("inkomsten")))
+        # commit changes
+        conn.commit()
+        return redirect("/budget")
+@app.route("/addbudget", methods=["POST","GET"])
+@login_required
+def addbudget():
+    if request.method == "GET":
+        return render_template("addbudget.html")
+    else:
+        conn = sqlite3.connect('pythonsqlite.db')
+        db = conn.cursor()
+        # Insert new income
+        db.execute("INSERT INTO Budgetten (userid, naam, bedrag, restaurant, winkel, openbaarVervoer, auto, elektriciteit, huis, water, internet, games, sport, tekenen, onderwijs) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                          (session["user_id"], request.form.get("naam"), request.form.get("bedrag"), request.form.get("Subcategorie1"), request.form.get("Subcategorie2"), request.form.get("Subcategorie3"), request.form.get("Subcategorie4"), request.form.get("Subcategorie5"), request.form.get("Subcategorie6"), request.form.get("Subcategorie7"), request.form.get("Subcategorie8"), request.form.get("Subcategorie9"), request.form.get("Subcategorie10"), request.form.get("Subcategorie11"), request.form.get("Subcategorie12")))
+        # commit changes
+        conn.commit()
+        return redirect("/budget")

@@ -1,0 +1,48 @@
+{%extends "layoutInput.html"%}
+{%block input%}
+<form action="/addbudget" method="post" class="center-block" id="form">
+    <div class="btn-group headerbudget" role="group" aria-label="Basic example">
+        <input autocomplete="off" required autofocus name="naam" placeholder="Naam van budget" type="text" class="addbudget btn btn-danger" id="input"/>
+    </div>
+    <div class="btn-group headerbudget" role="group" aria-label="Basic example">
+        <input autocomplete="off" required name="bedrag" placeholder="Bedrag" type="number" class="addbudgetbedrag btn" id="input"/>
+    </div>
+<div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="voedingC">
+            <input id="restaurant" type="checkbox" name="Subcategorie1" value="restaurant" />
+            <label class="drinkcard-cc card Categorie card3" for="restaurant"><img src="static/icons/restaurant.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="winkel" type="checkbox" name="Subcategorie2" value="winkel" />
+            <label class="drinkcard-cc card Categorie card3" for="winkel"><img src="static/icons/winkel.png" class="img-fluid" alt="Responsive image"></label>
+</div>
+<div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="transportC">
+            <input id="openbaarVervoer" type="checkbox" name="Subcategorie3" value="openbaarVervoer" />
+            <label class="drinkcard-cc card Categorie card2" for="openbaarVervoer"><img src="static/icons/openbaarVervoer.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="auto" type="checkbox" name="Subcategorie4" value="auto" />
+            <label class="drinkcard-cc card Categorie card2" for="auto"><img src="static/icons/auto.png" class="img-fluid" alt="Responsive image"></label>
+</div>
+<div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="woningC">
+            <input id="elektriciteit" type="checkbox" name="Subcategorie5" value="elektriciteit" />
+            <label class="drinkcard-cc card Categorie card1" for="elektriciteit"><img src="static/icons/elektriciteit.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="huis" type="checkbox" name="Subcategorie6" value="huis" />
+            <label class="drinkcard-cc card Categorie card1" for="huis"><img src="static/icons/huis.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="water" type="checkbox" name="Subcategorie7" value="water" />
+            <label class="drinkcard-cc card Categorie card1" for="water"><img src="static/icons/water.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="internet" type="checkbox" name="Subcategorie8" value="internet" />
+            <label class="drinkcard-cc card Categorie card1" for="internet"><img src="static/icons/internet.png" class="img-fluid" alt="Responsive image"></label>
+</div>
+<div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="hobbiesC">
+            <input id="games" type="checkbox" name="Subcategorie9" value="games" />
+            <label class="drinkcard-cc card Categorie card4" for="games"><img src="static/icons/games.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="sport" type="checkbox" name="Subcategorie10" value="sport" />
+            <label class="drinkcard-cc card Categorie card4" for="sport"><img src="static/icons/sport.png" class="img-fluid" alt="Responsive image"></label>
+            <input id="tekenen" type="checkbox" name="Subcategorie11" value="tekenen" />
+            <label class="drinkcard-cc card Categorie card4" for="tekenen"><img src="static/icons/tekenen.png" class="img-fluid" alt="Responsive image"></label>
+</div>
+<div class="cc-selector scrolling-wrapper-flexbox CategorieBalk" id="andereC">
+            <input id="onderwijs" type="checkbox" name="Subcategorie12" value="onderwijs" />
+            <label class="drinkcard-cc card Categorie card5" for="onderwijs"><img src="static/icons/onderwijs.png" class="img-fluid" alt="Responsive image"></label>
+</div>
+    <div class="btn-group headerbudget" role="group" aria-label="Basic example">
+            <button type="submit" class="btn btn-warning addbudgetsubmit">Nieuw budget</button>
+    </div>
+</form>
+{%endblock%}
