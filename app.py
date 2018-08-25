@@ -114,18 +114,22 @@ def register():
 @app.route("/home")
 @login_required
 def home():
+    # Bereken cash
     db = db_connect('pythonsqlite.db')
     rowsb = db.execute("SELECT * FROM rekeningen WHERE userid = ? ",
                           (session["user_id"],))
     rowb = rowsb.fetchall()
     balans = 0
-    schmekkels = 0
     for row in rowb:
-        if not row[2] == "smekkels":
-            balans += row[1]
-        else:
-            schmekkels = row[1]
-    return render_template("home.html", balans=balans, schmekkels=schmekkels)
+        balans += row[1]
+    # Bereken beleggingen TODO
+    # Bereken totaalbudget
+    # Bereken huidigbudget
+    # Inkomsten
+    # Inkomstenhuidig
+    # Savings
+    # Savingshuidig
+    return render_template("home.html", balans=balans)
 @app.route("/balans")
 @login_required
 def balans():

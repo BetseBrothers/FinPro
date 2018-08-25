@@ -314,3 +314,16 @@ p{margin-bottom:.3em;}
   height: 70%;
   text-align: justify;
 }
+.home {
+    height: 100%;
+    color: rgb(0, 0, 0);
+    border: 1px solid #000000;
+    padding-top: 0%;
+}
+.hometext {
+    font-weight: bold;
+    vertical-align: center;
+}
+.onelinehome {
+    padding-top: 11px;
+}
