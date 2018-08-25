@@ -46,10 +46,10 @@ home
       <div class="form-control totaalbalans home card3 onelinehome">
           <table class="full hometext">
               <tr>
-                  <td>mm/yy</td>
-                  <td>{{balans}}€</td>
-                  <td>{{balans}}€</td>
-                  <td>{{balans}}€</td>
+                  <td>{{month}}-{{date[6] + date[7]}}</td>
+                  <td>{{maandI}}€</td>
+                  <td>{{maandU}}€</td>
+                  <td>{{maandI - maandU}}€</td>
               </tr>
           </table>
       </div></div>
@@ -60,10 +60,10 @@ home
       <div class="form-control totaalbalans home card4 onelinehome">
           <table class="full hometext">
               <tr>
-                  <td>yyyy</td>
-                  <td>{{balans}}€</td>
-                  <td>{{balans}}€</td>
-                  <td>{{balans}}€</td>
+                  <td>20{{date[6] + date[7]}}</td>
+                  <td>{{jaarI}}€</td>
+                  <td>{{jaarU}}€</td>
+                  <td>{{jaarI -jaarU}}€</td>
               </tr>
           </table>
       </div></div>

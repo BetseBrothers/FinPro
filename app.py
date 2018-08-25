@@ -129,7 +129,29 @@ def home():
     # Inkomstenhuidig
     # Savings
     # Savingshuidig
-    return render_template("home.html", balans=balans)
+    # maand
+    dbm = db_connect('pythonsqlite.db')
+    rowsm = dbm.execute("SELECT * FROM transacties WHERE userid=? AND Datum >= date('now','start of month') AND Datum < date('now','start of month','+1 month')", (session["user_id"],))
+    rowm = rowsm.fetchall()
+    maandI = 0
+    maandU = 0
+    for row in rowm:
+        if row[5] == "Inkomst":
+            maandI += row[2]
+        else:
+            maandU += row[2]
+    # jaar
+    dbj = db_connect('pythonsqlite.db')
+    rowsj = dbj.execute("SELECT * FROM transacties WHERE userid=? AND Datum >= date('now','start of month') AND Datum < date('now','start of month','+1 month')", (session["user_id"],))
+    rowj = rowsj.fetchall()
+    jaarI = 0
+    jaarU = 0
+    for row in rowj:
+        if row[5] == "Inkomst":
+            jaarI += row[2]
+        else:
+            jaarU += row[2]
+    return render_template("home.html", balans=balans, maandI=maandI, maandU=maandU, jaarI=jaarI, jaarU=jaarU, date=time.strftime("%x"), month=time.strftime("%b"))
 @app.route("/balans")
 @login_required
 def balans():
