@@ -124,12 +124,33 @@ def home():
         balans += row[1]
     # Bereken beleggingen TODO
     # Bereken totaalbudget
-    # Bereken huidigbudget
+    rowsb = db.execute("SELECT * FROM Budgetten WHERE Userid = ?",
+                          (session["user_id"],))
+    budgetten = rowsb.fetchall()
+        # Bereken totaal van alle budgetten
+    totaalbudget = 0
+    for row in budgetten:
+        totaalbudget += row[2]
+    # Bereken totaaluitgaven huidige maand
+    selecteer = db.execute("SELECT * FROM Transacties WHERE userid=? and Soort=? and Datum >= date('now','start of month') and Datum < date('now','start of month','+1 month')",
+                          (session["user_id"], "Uitgave"))
+    uitgaven = selecteer.fetchall()
+    totaaluitgaven = 0
+    for uitgave in uitgaven:
+        totaaluitgaven += uitgave[2]
+    # bereken totaal van inkomsten in huidige maand
+    selecteer = db.execute("SELECT * FROM Transacties WHERE userid=? and Soort=? and Datum >= date('now','start of month') and Datum < date('now','start of month','+1 month')",
+                        (session["user_id"], "Inkomst"))
+    inkomsten = selecteer.fetchall()
+    totaalinkomsten = 0
+    for inkomst in inkomsten:
+        totaalinkomsten += inkomst[2]
     # Inkomsten
-    # Inkomstenhuidig
-    # Savings
-    # Savingshuidig
-    return render_template("home.html", balans=balans)
+    rowsb = db.execute("SELECT * FROM Inkomsten WHERE userid = ? ",
+                        (session["user_id"],))
+    rowb = rowsb.fetchone()
+    inkomst = rowb[1]
+    return render_template("home.html", balans=balans, totaalbudget=totaalbudget, totaaluitgaven=totaaluitgaven, totaalinkomsten=totaalinkomsten, inkomst=inkomst)
 @app.route("/balans")
 @login_required
 def balans():

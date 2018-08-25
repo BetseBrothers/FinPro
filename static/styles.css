@@ -327,3 +327,15 @@ p{margin-bottom:.3em;}
 .onelinehome {
     padding-top: 11px;
 }
+.inkomsthome {
+    color: green;
+}
+.uitgavehome {
+    color: red;
+}
+.savingshome {
+    color: #4193ff;
+}
+.transparant {
+    background-color: transparent;
+}
