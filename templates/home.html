@@ -43,13 +43,13 @@ home
     <a href="/maand" class="form-control preview">
       <div class="scrolling-wrapper-flexbox">
       <div class="card card3"><img src="static/icons/maand.png" class="img-fluid" alt="Responsive image"></div>
-      <div class="form-control totaalbalans home card3 onelinehome">
+      <div class="form-control totaalbalans home transparant onelinehome">
           <table class="full hometext">
               <tr>
                   <td>{{month}}-{{date[6] + date[7]}}</td>
-                  <td>{{maandI}}€</td>
-                  <td>{{maandU}}€</td>
-                  <td>{{maandI - maandU}}€</td>
+                  <td class="inkomsthome">{{maandI}}€</td>
+                  <td class="uitgavehome">{{maandU}}€</td>
+                  <td class="savingshome">{{maandI - maandU}}€</td>
               </tr>
           </table>
       </div></div>
@@ -57,13 +57,13 @@ home
     <a href="/jaar" class="form-control preview">
       <div class="scrolling-wrapper-flexbox">
       <div class="card card4"><img src="static/icons/jaar.png" class="img-fluid" alt="Responsive image"></div>
-      <div class="form-control totaalbalans home card4 onelinehome">
+      <div class="form-control totaalbalans home transparant onelinehome">
           <table class="full hometext">
               <tr>
                   <td>20{{date[6] + date[7]}}</td>
-                  <td>{{jaarI}}€</td>
-                  <td>{{jaarU}}€</td>
-                  <td>{{jaarI -jaarU}}€</td>
+                  <td class="inkomsthome">{{jaarI}}€</td>
+                  <td class="uitgavehome">{{jaarU}}€</td>
+                  <td class="savingshome">{{jaarI -jaarU}}€</td>
               </tr>
           </table>
       </div></div>
