@@ -7,19 +7,19 @@ home
     <a href="/budget" class="form-control preview">
       <div class="scrolling-wrapper-flexbox">
       <div class="card card1"><img src="static/icons/budget.png" class="img-fluid" alt="Responsive image"></div>
-      <div class="form-control totaalbalans home card1">
+      <div class="form-control totaalbalans home transparant">
           <table class="hometext full">
               <tr>
                   <td>Plan</td>
-                  <td>{{balans}}€</td>
-                  <td>{{balans}}€</td>
-                  <td>{{balans}}€</td>
+                  <td class="inkomsthome">{{inkomst}}€</td>
+                  <td class="uitgavehome">{{totaalbudget}}€</td>
+                  <td class="savingshome">{{inkomst - totaalbudget}}€</td>
               </tr>
               <tr>
                   <td>Huidig</td>
-                  <td>{{balans}}€</td>
-                  <td>{{balans}}€</td>
-                  <td>{{balans}}€</td>
+                  <td class="inkomsthome">{{totaalinkomsten}}€</td>
+                  <td class="uitgavehome">{{totaaluitgaven}}€</td>
+                  <td class="savingshome">{{totaalinkomsten - totaaluitgaven}}€</td>
               </tr>
           </table>
       </div></div>
@@ -27,15 +27,15 @@ home
     <a href="/balans" class="form-control preview">
       <div class="scrolling-wrapper-flexbox">
       <div class="card card2"><img src="static/icons/balans.png" class="img-fluid" alt="Responsive image"></div>
-      <div><div class="form-control totaalbalans home card2">
+      <div><div class="form-control totaalbalans home transparant">
           <table class="full hometext">
               <tr>
                   <td class="tillend">Cash</td>
-                  <td>{{balans}}€</td>
+                  <td class="inkomsthome">{{balans}}€</td>
               </tr>
               <tr>
                   <td class="tillend">Vermogen</td>
-                  <td>Berekening</td>
+                  <td class="savingshome">Berekening</td>
               </tr>
           </table>
       </div></div></div>
