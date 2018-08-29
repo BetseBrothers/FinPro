@@ -40,7 +40,7 @@ def test():
                           (newbalans, session["user_id"], request.form.get("rekening")))
         # commit changes
         conn.commit()
-        return render_template("home.html")
+        return redirect("/home")
 
 @app.route("/rekening", methods=["POST","GET"])
 @login_required
@@ -348,3 +348,10 @@ def overschrijving():
 @login_required
 def lening():
     return render_template("lening.html")
+@app.route("/grafiek")
+@login_required
+def grafiek():
+    db = db_connect('pythonsqlite.db')
+    rows = db.execute("SELECT * FROM Transacties WHERE userid=? AND soort='Uitgave'", (session["user_id"],))
+    uitgaven = rows.fetchall()
+    return render_template("grafiek.html", uitgaven=uitgaven)

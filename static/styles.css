@@ -339,3 +339,10 @@ p{margin-bottom:.3em;}
 .transparant {
     background-color: transparent;
 }
+.background-grafiek {
+    background-color: #ffffff;
+    border: 0ch;
+}
+.center {
+    text-align: center;
+}
