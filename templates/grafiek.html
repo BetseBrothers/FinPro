@@ -9,9 +9,14 @@ grafiek
     <button id="title" class="btn btn-light background-grafiek">Uitgaven per categorie</button>
     <div id="test"></div>
 </div>
+<div class="form-control center">
+    <button id="cash" class="btn btn-light background-grafiek">Cash flow</button>
+    <div id="cash-graph"></div>
+</div>
 </div>
 <script>
     var winkel = "{%set winkel = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'winkel'%}{%set winkel.a = winkel.a + row[2]%}{%endif%}{%endfor%}{{winkel.a}}"
+    var restaurant = "{%set restaurant = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'restaurant'%}{%set restaurant.a = restaurant.a + row[2]%}{%endif%}{%endfor%}{{restaurant.a}}"
     var openbaarVervoer = "{%set openbaarVervoer = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'openbaarVervoer'%}{%set openbaarVervoer.a = openbaarVervoer.a + row[2]%}{%endif%}{%endfor%}{{openbaarVervoer.a}}"
     var auto = "{%set auto = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'auto'%}{%set auto.a = auto.a + row[2]%}{%endif%}{%endfor%}{{auto.a}}"
     var verzekering = "{%set verzekering = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'verzekering'%}{%set verzekering.a = verzekering.a + row[2]%}{%endif%}{%endfor%}{{verzekering.a}}"
@@ -42,6 +47,17 @@ grafiek
     var belasting = "{%set belasting = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'belasting'%}{%set belasting.a = belasting.a + row[2]%}{%endif%}{%endfor%}{{belasting.a}}"
     var gift = "{%set gift = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'gift'%}{%set gift.a = gift.a + row[2]%}{%endif%}{%endfor%}{{gift.a}}"
     var interest = "{%set interest = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'interest'%}{%set interest.a = interest.a + row[2]%}{%endif%}{%endfor%}{{interest.a}}"
+    {%for i in range(12)%}
+    {%set total = namespace(a=0)%}
+    {%set totalU = namespace(a=0)%}
+    {%if ((date[0] * 10 + date[1]) | int) - i < 0%}
+    {%set jaarStoring = 1%}
+    {%else%}
+    {%set jaarStoring = 0%}
+    {%endif%}
+    var total{{i}} = {%for row in uit %}{%if ((row[3][5] | int) * 10 + (row[3][6] | int) + 12 )% 12 == ((date[0] | int) * 10 + (date[1] | int) - i + 12 )% 12 and (row[3][2] | int) * 10 + (row[3][3] | int) == (date[6] | int) * 10 + (date[7] | int) - jaarStoring%}{%set total.a = total.a + row[2] %}{%endif%}{%endfor%}{{total.a}};
+    var totalI{{i}} = {%for rowU in ink %}{%if (((rowU[3][5] * 10 + rowU[3][6]) | int) + 12 )% 12 == (((date[0] * 10 + date[1]) | int) - i + 12 )% 12 and (rowU[3][2] * 10 + rowU[3][3]) | int == ((date[6] * 10 + date[7]) | int) - jaarStoring%}{%set totalU.a = totalU.a + rowU[2] %}{%endif%}{%endfor%}{{totalU.a}}
+    {%endfor %}
 </script>
 <script src="/static/grafiek.js"></script>
 {%endblock%}

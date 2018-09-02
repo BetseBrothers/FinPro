@@ -1,7 +1,9 @@
+// load packages
+google.charts.load("current", {packages: ['corechart']});
+
 document.getElementById("title").onclick =function(){
     if (document.getElementById("test").innerHTML == ""){
-        google.charts.load("current", {packages: ['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
+        drawChart();
     }
     else if (document.getElementById("test").style.display == "none"){
         document.getElementById("test").style.display = "block";
@@ -10,12 +12,28 @@ document.getElementById("title").onclick =function(){
         document.getElementById("test").style.display = "none";
     }
 };
+document.getElementById("cash").onclick =function(){
+    if (document.getElementById("cash-graph").innerHTML == ""){
+        drawCash();
+    }
+    else if (document.getElementById("cash-graph").style.display == "none"){
+        document.getElementById("cash-graph").style.display = "block";
+    }
+    else {
+        document.getElementById("cash-graph").style.display = "none";
+    }
+};
+
+var today = new Date();
+var maand = today.getMonth();
+
 function drawChart(){
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Categorie');
     data.addColumn('number', 'bedrag');
     data.addRows([
         ['winkel', parseFloat(winkel)],
+        ['restaurant', parseFloat(restaurant)],
         ['openbaarVervoer', parseFloat(openbaarVervoer)],
         ['auto', parseFloat(auto)],
         ['verzekering', parseFloat(verzekering)],
@@ -49,5 +67,27 @@ function drawChart(){
     ]);
     var options = {'backgroundColor':"#ffffff"};
     var chart = new google.visualization.PieChart(document.getElementById('test'));
+    chart.draw(data, options);
+};
+function drawCash(){
+    var data = google.visualization.arrayToDataTable([
+        ['Maand', 'Inkomst', { role: 'style' }, 'Uitgave'],
+        [((1 + maand) % 12 + 1).toString(), totalI11, "green", -total11],
+        [((2 + maand) % 12 + 1).toString(), totalI10, "green", -total10],
+        [((3 + maand) % 12 + 1).toString(), totalI9, "green", -total9],
+        [((4 + maand) % 12 + 1).toString(), totalI8, "green", -total8],
+        [((5 + maand) % 12 + 1).toString(), totalI7, "green", -total7],
+        [((6 + maand) % 12 + 1).toString(), totalI6, "green", -total6],
+        [((7 + maand) % 12 + 1).toString(), totalI5, "green", -total5],
+        [((8 + maand) % 12 + 1).toString(), totalI4, "green", -total4],
+        [((9 + maand) % 12 + 1).toString(), totalI3, "green", -total3],
+        [((10 + maand) % 12 + 1).toString(), totalI2, "green", -total2],
+        [((11 + maand) % 12 + 1).toString(), totalI1, "green", -total1],
+        [((12 + maand) % 12 + 1).toString(), totalI0, "green", -total0]
+    ]);
+    var options = {'backgroundColor':"#ffffff",
+                    isStacked: true,
+                    legend: { position: "none" }};
+    var chart = new google.visualization.ColumnChart(document.getElementById('cash-graph'));
     chart.draw(data, options);
 }
