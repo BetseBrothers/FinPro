@@ -376,7 +376,7 @@ p{margin-bottom:.3em;}
     background-color: #2f64c7;
 }
 .incomecard {
-    background-color: #28a745;
+    background-color: #39834a;
 }
 .background-grafiek {
     background-color: #ffffff;
@@ -384,4 +384,7 @@ p{margin-bottom:.3em;}
 }
 .center {
     text-align: center;
+}
+.cardinverse {
+    filter: invert(100%);
 }

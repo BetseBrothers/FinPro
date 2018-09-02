@@ -6,7 +6,7 @@ home
   <div class="container">
     <a href="/budget" class="form-control preview">
       <div class="scrolling-wrapper-flexbox">
-      <div class="card card1"><img src="static/icons/budget.png" class="img-fluid" alt="Responsive image"></div>
+      <div class="card cardinverse"><img src="static/icons/budget.png" class="img-fluid" alt="Responsive image"></div>
       <div class="form-control totaalbalans home transparant">
           <table class="hometext full">
               <tr>
@@ -26,7 +26,7 @@ home
     </a>
     <a href="/balans" class="form-control preview">
       <div class="scrolling-wrapper-flexbox">
-      <div class="card card2"><img src="static/icons/balans.png" class="img-fluid" alt="Responsive image"></div>
+      <div class="card cardinverse"><img src="static/icons/balans.png" class="img-fluid" alt="Responsive image"></div>
       <div><div class="form-control totaalbalans home transparant">
           <table class="full hometext">
               <tr>
@@ -42,7 +42,7 @@ home
     </a>
     <a href="/maand" class="form-control preview">
       <div class="scrolling-wrapper-flexbox">
-      <div class="card card3"><img src="static/icons/maand.png" class="img-fluid" alt="Responsive image"></div>
+      <div class="card cardinverse"><img src="static/icons/maand.png" class="img-fluid" alt="Responsive image"></div>
       <div class="form-control totaalbalans home transparant onelinehome">
           <table class="full hometext">
               <tr>
@@ -56,7 +56,7 @@ home
     </a>
     <a href="/jaar" class="form-control preview">
       <div class="scrolling-wrapper-flexbox">
-      <div class="card card4"><img src="static/icons/jaar.png" class="img-fluid" alt="Responsive image"></div>
+      <div class="card cardinverse"><img src="static/icons/jaar.png" class="img-fluid" alt="Responsive image"></div>
       <div class="form-control totaalbalans home transparant onelinehome">
           <table class="full hometext">
               <tr>
@@ -70,7 +70,7 @@ home
     </a>
     <a href="/beleggingen" class="form-control preview">
         <div class="scrolling-wrapper-flexbox">
-            <div class="card beleggingcard"><img src="static/icons/aandelen.png" class="img-fluid" alt="Responsive image"></div>
+            <div class="card cardinverse"><img src="static/icons/aandelen.png" class="img-fluid" alt="Responsive image"></div>
             <div><div class="form-control totaalbalans home transparant">
                 <table class="full hometext">
                     <tr>
@@ -85,7 +85,18 @@ home
             </div></div></div>
     <a href="/grafiek" class="form-control preview">
       <div class="scrolling-wrapper-flexbox">
-      <div class="card card5"><img src="static/icons/grafieken.png" class="img-fluid" alt="Responsive image"></div>
-      {{grafieken}}</div>
+      <div class="card cardinverse"><img src="static/icons/grafieken.png" class="img-fluid" alt="Responsive image"></div>
+      <div><div class="form-control totaalbalans home transparant">
+        <table class="full hometext">
+            <tr>
+                <td class="tillend">Jaaruitgaven</td>
+                <td class="uitgavehome">{{jaaruitgaven}}€</td>
+            </tr>
+            <tr>
+                <td class="tillend">FIRE-jaren (98%)</td>
+                <td class="inkomsthome">{% if jaaruitgaven > 0 %}{{ ((totaalbeleggingen + balans) / jaaruitgaven) | int }}{%else%}0{% endif %}</td>
+            </tr>
+        </table>
+    </div></div></div>
     </a>
 {%endblock%}

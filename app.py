@@ -187,7 +187,14 @@ def home():
         totaalprijs += row[2]
         totaalbeleggingen += row[3]
         totaalverkocht += row[6]
-    return render_template("home.html", totaalprijs=totaalprijs, totaalbeleggingen=totaalbeleggingen, totaalverkocht=totaalverkocht,  balans=balans, totaalbudget=totaalbudget, totaaluitgaven=totaaluitgaven, totaalinkomsten=totaalinkomsten, inkomst=inkomst, maandI=maandI, maandU=maandU, jaarI=jaarI, jaarU=jaarU, date=time.strftime("%x"), month=time.strftime("%b"))
+    # Bereken 12 laatste maanden aan uitgaven
+    selecteer = db.execute("SELECT * FROM Transacties WHERE userid=? and Soort=? and Datum >= date('now','start of month', '-12 month') and Datum < date('now','start of month')",
+                        (session["user_id"], "Uitgave"))
+    uitgaven = selecteer.fetchall()
+    jaaruitgaven = 0
+    for uitgave in uitgaven:
+        jaaruitgaven += uitgave[2]
+    return render_template("home.html", jaaruitgaven=jaaruitgaven, totaalprijs=totaalprijs, totaalbeleggingen=totaalbeleggingen, totaalverkocht=totaalverkocht,  balans=balans, totaalbudget=totaalbudget, totaaluitgaven=totaaluitgaven, totaalinkomsten=totaalinkomsten, inkomst=inkomst, maandI=maandI, maandU=maandU, jaarI=jaarI, jaarU=jaarU, date=time.strftime("%x"), month=time.strftime("%b"))
 @app.route("/balans")
 @login_required
 def balans():
