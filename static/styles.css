@@ -378,3 +378,10 @@ p{margin-bottom:.3em;}
 .incomecard {
     background-color: #28a745;
 }
+.background-grafiek {
+    background-color: #ffffff;
+    border: 0ch;
+}
+.center {
+    text-align: center;
+}

@@ -1,0 +1,47 @@
+{% extends "layoutHome.html" %}
+{% block homeTitle %}
+grafiek
+{%endblock%}
+{%block homeBody%}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<div class="container">
+<div class="form-control center">
+    <button id="title" class="btn btn-light background-grafiek">Uitgaven per categorie</button>
+    <div id="test"></div>
+</div>
+</div>
+<script>
+    var winkel = "{%set winkel = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'winkel'%}{%set winkel.a = winkel.a + row[2]%}{%endif%}{%endfor%}{{winkel.a}}"
+    var openbaarVervoer = "{%set openbaarVervoer = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'openbaarVervoer'%}{%set openbaarVervoer.a = openbaarVervoer.a + row[2]%}{%endif%}{%endfor%}{{openbaarVervoer.a}}"
+    var auto = "{%set auto = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'auto'%}{%set auto.a = auto.a + row[2]%}{%endif%}{%endfor%}{{auto.a}}"
+    var verzekering = "{%set verzekering = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'verzekering'%}{%set verzekering.a = verzekering.a + row[2]%}{%endif%}{%endfor%}{{verzekering.a}}"
+    var dokters = "{%set dokters = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'dokters'%}{%set dokters.a = dokters.a + row[2]%}{%endif%}{%endfor%}{{dokters.a}}"
+    var kleren = "{%set kleren = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'kleren'%}{%set kleren.a = kleren.a + row[2]%}{%endif%}{%endfor%}{{kleren.a}}"
+    var abonnementen = "{%set abonnementen = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'abonnementen'%}{%set abonnementen.a = abonnementen.a + row[2]%}{%endif%}{%endfor%}{{abonnementen.a}}"
+    var diensten = "{%set diensten = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'diensten'%}{%set diensten.a = diensten.a + row[2]%}{%endif%}{%endfor%}{{diensten.a}}"
+    var elektronica = "{%set elektronica = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'elektronica'%}{%set elektronica.a = elektronica.a + row[2]%}{%endif%}{%endfor%}{{elektronica.a}}"
+    var gsm = "{%set gsm = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'gsm'%}{%set gsm.a = gsm.a + row[2]%}{%endif%}{%endfor%}{{gsm.a}}"
+    var huisdieren = "{%set huisdieren = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'huisdieren'%}{%set huisdieren.a = huisdieren.a + row[2]%}{%endif%}{%endfor%}{{huisdieren.a}}"
+    var elektriciteit = "{%set elektriciteit = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'elektriciteit'%}{%set elektriciteit.a = elektriciteit.a + row[2]%}{%endif%}{%endfor%}{{elektriciteit.a}}"
+    var huis = "{%set huis = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'huis'%}{%set huis.a = huis.a + row[2]%}{%endif%}{%endfor%}{{huis.a}}"
+    var water = "{%set water = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'water'%}{%set water.a = water.a + row[2]%}{%endif%}{%endfor%}{{water.a}}"
+    var internet = "{%set internet = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'internet'%}{%set internet.a = internet.a + row[2]%}{%endif%}{%endfor%}{{internet.a}}"
+    var meubels = "{%set meubels = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'meubels'%}{%set meubels.a = meubels.a + row[2]%}{%endif%}{%endfor%}{{meubels.a}}"
+    var supplies = "{%set supplies = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'supplies'%}{%set supplies.a = supplies.a + row[2]%}{%endif%}{%endfor%}{{supplies.a}}"
+    var vuilnis = "{%set vuilnis = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'vuilnis'%}{%set vuilnis.a = vuilnis.a + row[2]%}{%endif%}{%endfor%}{{vuilnis.a}}"
+    var games = "{%set games = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'games'%}{%set games.a = games.a + row[2]%}{%endif%}{%endfor%}{{games.a}}"
+    var sport = "{%set sport = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'sport'%}{%set sport.a = sport.a + row[2]%}{%endif%}{%endfor%}{{sport.a}}"
+    var tekenen = "{%set tekenen = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'tekenen'%}{%set tekenen.a = tekenen.a + row[2]%}{%endif%}{%endfor%}{{tekenen.a}}"
+    var reizen = "{%set reizen = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'reizen'%}{%set reizen.a = reizen.a + row[2]%}{%endif%}{%endfor%}{{reizen.a}}"
+    var tuin = "{%set tuin = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'tuin'%}{%set tuin.a = tuin.a + row[2]%}{%endif%}{%endfor%}{{tuin.a}}"
+    var events = "{%set events = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'events'%}{%set events.a = events.a + row[2]%}{%endif%}{%endfor%}{{events.a}}"
+    var lezen = "{%set lezen = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'lezen'%}{%set lezen.a = lezen.a + row[2]%}{%endif%}{%endfor%}{{lezen.a}}"
+    var tv = "{%set tv = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'tv'%}{%set tv.a = tv.a + row[2]%}{%endif%}{%endfor%}{{tv.a}}"
+    var onderwijs = "{%set onderwijs = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'onderwijs'%}{%set onderwijs.a = onderwijs.a + row[2]%}{%endif%}{%endfor%}{{onderwijs.a}}"
+    var charity = "{%set charity = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'charity'%}{%set charity.a = charity.a + row[2]%}{%endif%}{%endfor%}{{charity.a}}"
+    var belasting = "{%set belasting = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'belasting'%}{%set belasting.a = belasting.a + row[2]%}{%endif%}{%endfor%}{{belasting.a}}"
+    var gift = "{%set gift = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'gift'%}{%set gift.a = gift.a + row[2]%}{%endif%}{%endfor%}{{gift.a}}"
+    var interest = "{%set interest = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'interest'%}{%set interest.a = interest.a + row[2]%}{%endif%}{%endfor%}{{interest.a}}"
+</script>
+<script src="/static/grafiek.js"></script>
+{%endblock%}
