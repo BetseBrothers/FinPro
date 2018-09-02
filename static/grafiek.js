@@ -88,7 +88,8 @@ function drawChart(){
         ['gift', parseFloat(gift)],
         ['interest', parseFloat(interest)]
     ]);
-    var options = {'backgroundColor':"#ffffff"};
+    var options = {'backgroundColor':"#ffffff",
+    colors: ['rgb(47, 203, 255)', 'rgb(47, 203, 255)', 'rgb(243, 255, 80)', 'rgb(243, 255, 80)', 'rgb(255, 41, 51)', 'rgb(255, 41, 51)', 'rgb(66, 255, 129)', 'rgb(66, 255, 129)', 'rgb(66, 255, 129)', 'rgb(66, 255, 129)', 'rgb(66, 255, 129)', 'rgb(66, 255, 129)', 'rgb(248, 145, 61)', 'rgb(248, 145, 61)', 'rgb(248, 145, 61)', 'rgb(248, 145, 61)', 'rgb(248, 145, 61)', 'rgb(248, 145, 61)', 'rgb(248, 145, 61)', 'rgb(218, 98, 255)', 'rgb(218, 98, 255)', 'rgb(218, 98, 255)', 'rgb(218, 98, 255)', 'rgb(218, 98, 255)', 'rgb(218, 98, 255)', 'rgb(218, 98, 255)', 'rgb(218, 98, 255)', 'rgb(73, 230, 183)', 'rgb(73, 230, 183)', 'rgb(73, 230, 183)', 'rgb(73, 230, 183)', 'rgb(73, 230, 183)']};
     var chart = new google.visualization.PieChart(document.getElementById('test'));
     chart.draw(data, options);
 };
@@ -111,9 +112,11 @@ function drawCat(){
         ['huur', parseFloat(huur)],
         ['dividend', parseFloat(dividend)],
         ['interest', parseFloat(interest1)],
-        ['andere', parseFloat(andere)]
+        ['verkoop', parseFloat(verkoop)],
+        ['andere', parseFloat(interest1)]
     ]);
-    var options = {'backgroundColor':"#ffffff"};
+    var options = {'backgroundColor':"#ffffff",
+    colors: ['rgb(248, 145, 61)', 'rgb(248, 145, 61)', 'rgb(66, 255, 129)', 'rgb(66, 255, 129)', 'rgb(66, 255, 129)', 'rgb(66, 255, 129)', 'rgb(243, 255, 80)', 'rgb(243, 255, 80)', 'rgb(243, 255, 80)', 'rgb(47, 203, 255)', 'rgb(47, 203, 255)', 'rgb(255, 41, 51)', 'rgb(255, 41, 51)', 'rgb(73, 230, 183)', 'rgb(73, 230, 183)', 'rgb(73, 230, 183)']};
     var chart = new google.visualization.PieChart(document.getElementById('inkomst-g'));
     chart.draw(data, options);
 };

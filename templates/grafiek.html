@@ -69,6 +69,7 @@ grafiek
     var huur = "{%set huur = namespace(a=0)%}{%for row in ink%}{%if row[7] == 'huur'%}{%set huur.a = huur.a + row[2]%}{%endif%}{%endfor%}{{huur.a}}";
     var dividend = "{%set dividend = namespace(a=0)%}{%for row in ink%}{%if row[7] == 'dividend'%}{%set dividend.a = dividend.a + row[2]%}{%endif%}{%endfor%}{{dividend.a}}";
     var interest1 = "{%set interest1 = namespace(a=0)%}{%for row in ink%}{%if row[7] == 'interest1'%}{%set interest1.a = interest1.a + row[2]%}{%endif%}{%endfor%}{{interest1.a}}";
+    var verkoop = "{%set verkoop = namespace(a=0)%}{%for row in ink%}{%if row[7] == 'verkoop'%}{%set verkoop.a = verkoop.a + row[2]%}{%endif%}{%endfor%}{{verkoop.a}}";
     var andere = "{%set andere = namespace(a=0)%}{%for row in ink%}{%if row[7] == 'andere'%}{%set andere.a = andere.a + row[2]%}{%endif%}{%endfor%}{{andere.a}}";
 
     {%for i in range(12)%}
