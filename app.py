@@ -521,4 +521,7 @@ def grafiek():
     uitgave = db.execute("SELECT * FROM Transacties WHERE userid=? and Soort=?",
                           (session["user_id"], "Uitgave"))
     uit = uitgave.fetchall()
-    return render_template("grafiek.html", uitgaven=uitgaven, ink=ink, uit=uit, date=time.strftime("%x"))
+    hist = db.execute("SELECT * FROM Historiek WHERE userid=?",
+                          (session["user_id"],))
+    history = hist.fetchall()
+    return render_template("grafiek.html", uitgaven=uitgaven, ink=ink, uit=uit, date=time.strftime("%x"), history=history)

@@ -23,9 +23,21 @@ document.getElementById("cash").onclick =function(){
         document.getElementById("cash-graph").style.display = "none";
     }
 };
+document.getElementById("ink").onclick =function(){
+    if (document.getElementById("ink-graph").innerHTML == ""){
+        drawInk();
+    }
+    else if (document.getElementById("ink-graph").style.display == "none"){
+        document.getElementById("ink-graph").style.display = "block";
+    }
+    else {
+        document.getElementById("ink-graph").style.display = "none";
+    }
+};
 
 var today = new Date();
 var maand = today.getMonth();
+var year = today.getFullYear();
 
 function drawChart(){
     var data = new google.visualization.DataTable();
@@ -89,5 +101,17 @@ function drawCash(){
                     isStacked: true,
                     legend: { position: "none" }};
     var chart = new google.visualization.ColumnChart(document.getElementById('cash-graph'));
+    chart.draw(data, options);
+}
+function drawInk(){
+    datalist = [['Maand', 'Beleggingen', 'Cash']];
+    for (i=0; i<(year-2016); i++){
+        datalist.push([(year-i).toString(), totalB[i], totalC[i]])
+    }
+    var data = google.visualization.arrayToDataTable(datalist);
+    var options = {'backgroundColor':"#ffffff",
+                    isStacked: true,
+                    legend: { position: "none" }};
+    var chart = new google.visualization.SteppedAreaChart(document.getElementById('ink-graph'));
     chart.draw(data, options);
 }

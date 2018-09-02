@@ -13,6 +13,10 @@ grafiek
     <button id="cash" class="btn btn-light background-grafiek">Cash flow</button>
     <div id="cash-graph"></div>
 </div>
+<div class="form-control center">
+    <button id="ink" class="btn btn-light background-grafiek">Cash flow</button>
+    <div id="ink-graph"></div>
+</div>
 </div>
 <script>
     var winkel = "{%set winkel = namespace(a=0)%}{%for row in uitgaven%}{%if row[7] == 'winkel'%}{%set winkel.a = winkel.a + row[2]%}{%endif%}{%endfor%}{{winkel.a}}"
@@ -56,7 +60,15 @@ grafiek
     {%set jaarStoring = 0%}
     {%endif%}
     var total{{i}} = {%for row in uit %}{%if ((row[3][5] | int) * 10 + (row[3][6] | int) + 12 )% 12 == ((date[0] | int) * 10 + (date[1] | int) - i + 12 )% 12 and (row[3][2] | int) * 10 + (row[3][3] | int) == (date[6] | int) * 10 + (date[7] | int) - jaarStoring%}{%set total.a = total.a + row[2] %}{%endif%}{%endfor%}{{total.a}};
-    var totalI{{i}} = {%for rowU in ink %}{%if (((rowU[3][5] * 10 + rowU[3][6]) | int) + 12 )% 12 == (((date[0] * 10 + date[1]) | int) - i + 12 )% 12 and (rowU[3][2] * 10 + rowU[3][3]) | int == ((date[6] * 10 + date[7]) | int) - jaarStoring%}{%set totalU.a = totalU.a + rowU[2] %}{%endif%}{%endfor%}{{totalU.a}}
+    var totalI{{i}} = {%for rowU in ink %}{%if (((rowU[3][5] * 10 + rowU[3][6]) | int) + 12 )% 12 == (((date[0] * 10 + date[1]) | int) - i + 12 )% 12 and (rowU[3][2] * 10 + rowU[3][3]) | int == ((date[6] * 10 + date[7]) | int) - jaarStoring%}{%set totalU.a = totalU.a + rowU[2] %}{%endif%}{%endfor%}{{totalU.a}};
+    {%endfor %}
+    var totalC = [];
+    var totalB = [];
+    {%for i in range(((date[6] | int) * 10 + (date[7] | int))-16)%}
+    {%set totalC = namespace(a=0)%}
+    {%set totalB = namespace(a=0)%}
+    totalC.push({%for rowC in history %}{%if (rowC[3][2] * 10 + rowC[3][3]) | int == ((date[6] * 10 + date[7]) | int) - i%}{%set totalC.a = rowC[1] %}{%endif%}{%endfor%}{{totalC.a}});
+    totalB.push({%for rowB in history %}{%if (rowB[3][2] * 10 + rowB[3][3]) | int == ((date[6] * 10 + date[7]) | int) - i%}{%set totalB.a = rowB[2] %}{%endif%}{%endfor%}{{totalB.a}});
     {%endfor %}
 </script>
 <script src="/static/grafiek.js"></script>
