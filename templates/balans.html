@@ -22,7 +22,7 @@
                 </table>
             </div>
     {% for row in rekeningen %}
-    {% if row[2] != "smekkels" and row[2] != "cash" %}
+    {% if row[2] != "smekkels" and row[2] != "Cash" %}
     <div class="form-control rekeningenbalans">
         <table class="full">
             <tr>
@@ -37,7 +37,7 @@
         <table class="full">
                 <tr>
                     <td class="tillend balans">Beleggingen</td>
-                    <td class="balans">Optelling</td>
+                    <td class="balans">{{totaalbeleggingen}}€</td>
                 </tr>
             </table>
         </div>
@@ -45,7 +45,7 @@
         <table class="full">
             <tr>
                 <td class="tillend balans">Vermogen</td>
-                <td class="balans">{{totaal}}€</td>
+                <td class="balans">{{totaal + totaalbeleggingen}}€</td>
             </tr>
         </table>
     </div>
@@ -69,7 +69,7 @@
         <table class="full">
             <tr>
                 <td class="tillend beleggingenbalans">Rendement</td>
-                <td class="beleggingenbalans">Optelling</td>
+                <td class="beleggingenbalans">{{totaalbeleggingen - totaalprijs + totaalverkocht}}€</td>
             </tr>
         </table>
     </div>

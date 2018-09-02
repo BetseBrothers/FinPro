@@ -175,7 +175,19 @@ def home():
             jaarI += row[2]
         else:
             jaarU += row[2]
-    return render_template("home.html", balans=balans, totaalbudget=totaalbudget, totaaluitgaven=totaaluitgaven, totaalinkomsten=totaalinkomsten, inkomst=inkomst, maandI=maandI, maandU=maandU, jaarI=jaarI, jaarU=jaarU, date=time.strftime("%x"), month=time.strftime("%b"))
+    # Neem alle beleggingen van huidige user voor op pagina te zetten
+    rowsb = db.execute("SELECT * FROM Beleggingen WHERE Userid = ?",
+                          (session["user_id"],))
+    beleggingen = rowsb.fetchall()
+    # Bereken totaal van alle portfolios: prijs en waarde
+    totaalbeleggingen = 0
+    totaalprijs = 0
+    totaalverkocht = 0
+    for row in beleggingen:
+        totaalprijs += row[2]
+        totaalbeleggingen += row[3]
+        totaalverkocht += row[6]
+    return render_template("home.html", totaalprijs=totaalprijs, totaalbeleggingen=totaalbeleggingen, totaalverkocht=totaalverkocht,  balans=balans, totaalbudget=totaalbudget, totaaluitgaven=totaaluitgaven, totaalinkomsten=totaalinkomsten, inkomst=inkomst, maandI=maandI, maandU=maandU, jaarI=jaarI, jaarU=jaarU, date=time.strftime("%x"), month=time.strftime("%b"))
 @app.route("/balans")
 @login_required
 def balans():
@@ -189,7 +201,7 @@ def balans():
             balans += row[1]
     rekeningtotaal = 0
     for row in rowb:
-        if not row[2] == "smekkels" and not row[2] == "cash":
+        if not row[2] == "smekkels" and not row[2] == "Cash":
             rekeningtotaal += row[1]
     # Bereken totaal van inkomsten en uitgaven aller tijden
     db = db_connect('pythonsqlite.db')
@@ -205,7 +217,19 @@ def balans():
     alltimeuitgaven = 0
     for uitgave in uitgaven:
         alltimeuitgaven += uitgave[2]
-    return render_template("balans.html", rekeningen=rowb, totaal=balans, rekeningtotaal=rekeningtotaal, inkomsten=alltimeinkomsten, uitgaven=alltimeuitgaven)
+    # Neem alle beleggingen van huidige user voor op pagina te zetten
+        rowsb = db.execute("SELECT * FROM Beleggingen WHERE Userid = ?",
+                          (session["user_id"],))
+        beleggingen = rowsb.fetchall()
+    # Bereken totaal van alle portfolios: prijs en waarde
+    totaalbeleggingen = 0
+    totaalprijs = 0
+    totaalverkocht = 0
+    for row in beleggingen:
+        totaalprijs += row[2]
+        totaalbeleggingen += row[3]
+        totaalverkocht += row[6]
+    return render_template("balans.html", totaalprijs=totaalprijs, totaalbeleggingen=totaalbeleggingen, totaalverkocht=totaalverkocht, rekeningen=rowb, totaal=balans, rekeningtotaal=rekeningtotaal, inkomsten=alltimeinkomsten, uitgaven=alltimeuitgaven)
 @app.route("/budget", methods=["POST","GET"])
 @login_required
 def budget():
@@ -348,3 +372,138 @@ def overschrijving():
 @login_required
 def lening():
     return render_template("lening.html")
+@app.route("/portfolio", methods=["POST","GET"])
+@login_required
+def portfolio():
+    if request.method == "GET":
+        return render_template("portfolio.html")
+    else:
+        conn = sqlite3.connect('pythonsqlite.db')
+        db = conn.cursor()
+        db.execute("INSERT INTO Portfolios (userid, naam) VALUES(?,?)",
+                          (session["user_id"], request.form.get("naam")))
+        # commit changes
+        conn.commit()
+        return redirect("/beleggingen")
+@app.route("/beleggingen", methods=["POST","GET"])
+@login_required
+def beleggingen():
+    if request.method == "GET":
+        db = db_connect('pythonsqlite.db')
+        rowsb = db.execute("SELECT * FROM Portfolios WHERE userid = ? ",
+                            (session["user_id"],))
+        portfolios = rowsb.fetchall()
+        # Neem alle beleggingen van huidige user voor op pagina te zetten
+        rowsb = db.execute("SELECT * FROM Beleggingen WHERE Userid = ?",
+                          (session["user_id"],))
+        beleggingen = rowsb.fetchall()
+        # Bereken totaal van alle portfolios: prijs en waarde
+        totaalbeleggingen = 0
+        totaalprijs = 0
+        totaalverkocht = 0
+        for row in beleggingen:
+            totaalprijs += row[2]
+            totaalbeleggingen += row[3]
+            totaalverkocht += row[6]
+        # Bereken cash
+        rowsb = db.execute("SELECT * FROM rekeningen WHERE userid = ? ",
+                          (session["user_id"],))
+        rowb = rowsb.fetchall()
+        cash = 0
+        for row in rowb:
+            cash += row[1]
+        # Bereken 12 laatste maanden aan uitgaven
+        selecteer = db.execute("SELECT * FROM Transacties WHERE userid=? and Soort=? and Datum >= date('now','start of month', '-12 month') and Datum < date('now','start of month')",
+                          (session["user_id"], "Uitgave"))
+        uitgaven = selecteer.fetchall()
+        totaaluitgaven = 0
+        for uitgave in uitgaven:
+            totaaluitgaven += uitgave[2]
+        return render_template("beleggingen.html", portfolios=portfolios, beleggingen=beleggingen, totaalprijs=totaalprijs, totaalbeleggingen=totaalbeleggingen, cash=cash, totaaluitgaven=totaaluitgaven, totaalverkocht=totaalverkocht)
+    else:
+        conn = sqlite3.connect('pythonsqlite.db')
+        db = conn.cursor()
+        db.execute('UPDATE Beleggingen SET waarde=? where naam=? AND userid=?', 
+                        (request.form.get("update"), request.form.get("naam"), session["user_id"]))
+        # commit changes
+        conn.commit()
+        # voeg nieuwe status toe aan historiek
+        # Neem alle beleggingen van huidige user voor op pagina te zetten
+        rowsb = db.execute("SELECT * FROM Beleggingen WHERE Userid = ?",
+                          (session["user_id"],))
+        beleggingen = rowsb.fetchall()
+        # Bereken totaal van alle portfolios: prijs en waarde
+        totaalbeleggingen = 0
+        for row in beleggingen:
+            totaalbeleggingen += row[3]
+        # Bereken cash
+        rowsb = db.execute("SELECT * FROM rekeningen WHERE userid = ? ",
+                          (session["user_id"],))
+        rowb = rowsb.fetchall()
+        cash = 0
+        for row in rowb:
+            cash += row[1]
+        # Steek in historiek voor huidige datum
+        db.execute("INSERT INTO Historiek (userid, cash, beleggingen, datum) VALUES(?,?,?,date('now'))",
+                            (session["user_id"], cash, totaalbeleggingen))
+        # commit changes
+        conn.commit()
+        return redirect("/beleggingen")
+@app.route("/addbelegging", methods=["POST","GET"])
+@login_required
+def addbelegging():
+    if request.method == "GET":
+        db = db_connect('pythonsqlite.db')
+        rowsb = db.execute("SELECT * FROM Portfolios WHERE userid = ? ",
+                            (session["user_id"],))
+        portfolios = rowsb.fetchall()
+        rowsb = db.execute("SELECT * FROM Rekeningen WHERE userid = ? ",
+                            (session["user_id"],))
+        rekeningen = rowsb.fetchall()
+        rowsb = db.execute("SELECT * FROM Beleggingen WHERE userid = ? ",
+                            (session["user_id"],))
+        beleggingen = rowsb.fetchall()
+        return render_template("addbelegging.html", portfolios=portfolios, rekeningen=rekeningen, beleggingen=beleggingen)
+    else:
+        conn = sqlite3.connect('pythonsqlite.db')
+        db = conn.cursor()
+        if request.form.get("belegging") == "nieuw":
+            db.execute('UPDATE rekeningen SET balans=balans-? where rekeningnaam=? AND userid=?', 
+                        (request.form.get("Bedrag"), request.form.get("rekening"), session["user_id"]))
+            db.execute("INSERT INTO Beleggingen (userid, naam, prijs, waarde, portfolio, datum, verkocht) VALUES(?,?,?,?,?,date('now'), 0.0)",
+                            (session["user_id"], request.form.get("naam"), request.form.get("Bedrag"), request.form.get("Waarde"), request.form.get("portfolios")))
+        else:
+            db.execute('UPDATE rekeningen SET balans=balans-? where rekeningnaam=? AND userid=?', 
+                        (request.form.get("Bedrag"), request.form.get("rekening"), session["user_id"]))
+            db.execute('UPDATE Beleggingen SET prijs=prijs+? where naam=? AND userid=?', 
+                        (request.form.get("Bedrag"), request.form.get("belegging"), session["user_id"]))
+            db.execute('UPDATE Beleggingen SET waarde=waarde+? where naam=? AND userid=?', 
+                        (request.form.get("Waarde"), request.form.get("belegging"), session["user_id"]))
+        # commit changes
+        conn.commit()
+        return redirect("/beleggingen")
+@app.route("/verkoopbelegging", methods=["POST","GET"])
+@login_required
+def verkoopbelegging():
+    if request.method == "GET":
+        db = db_connect('pythonsqlite.db')
+        rowsb = db.execute("SELECT * FROM Portfolios WHERE userid = ? ",
+                            (session["user_id"],))
+        portfolios = rowsb.fetchall()
+        rowsb = db.execute("SELECT * FROM Rekeningen WHERE userid = ? ",
+                            (session["user_id"],))
+        rekeningen = rowsb.fetchall()
+        rowsb = db.execute("SELECT * FROM Beleggingen WHERE userid = ? ",
+                            (session["user_id"],))
+        beleggingen = rowsb.fetchall()
+        return render_template("verkoopbelegging.html", portfolios=portfolios, rekeningen=rekeningen, beleggingen=beleggingen)
+    else:
+        conn = sqlite3.connect('pythonsqlite.db')
+        db = conn.cursor()
+        db.execute('UPDATE Beleggingen SET verkocht=verkocht+? where naam=? AND userid=?', 
+                        (request.form.get("verkocht"), request.form.get("belegging"), session["user_id"]))
+        db.execute('UPDATE rekeningen SET balans=balans+? where rekeningnaam=? AND userid=?', 
+                        (request.form.get("bedrag"), request.form.get("rekening"), session["user_id"]))
+        # commit changes
+        conn.commit()
+        return redirect("/beleggingen")

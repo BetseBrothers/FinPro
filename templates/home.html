@@ -35,7 +35,7 @@ home
               </tr>
               <tr>
                   <td class="tillend">Vermogen</td>
-                  <td class="savingshome">Berekening</td>
+                  <td class="savingshome">{{balans + totaalbeleggingen}}€</td>
               </tr>
           </table>
       </div></div></div>
@@ -68,19 +68,25 @@ home
           </table>
       </div></div>
     </a>
-    <a href="/rekening" class="form-control preview">
-      <div class="scrolling-wrapper-flexbox">
-      <div class="card card5"><img src="static/icons/grafieken.png" class="img-fluid" alt="Responsive image"></div>
-      {{grafieken}}</div>
+    <a href="/beleggingen" class="form-control preview">
+        <div class="scrolling-wrapper-flexbox">
+            <div class="card beleggingcard"><img src="static/icons/aandelen.png" class="img-fluid" alt="Responsive image"></div>
+            <div><div class="form-control totaalbalans home transparant">
+                <table class="full hometext">
+                    <tr>
+                        <td class="tillend">Beleggingen</td>
+                        <td class="inkomsthome">{{totaalbeleggingen}}€</td>
+                    </tr>
+                    <tr>
+                        <td class="tillend">Rendement</td>
+                        <td class="savingshome">{{totaalbeleggingen - totaalprijs + totaalverkocht}}€</td>
+                    </tr>
+                </table>
+            </div></div></div>
     </a>
     <a href="/rekening" class="form-control preview">
-      <div class="scrolling-wrapper-flexbox">
-      <div class="card card6"><img src="static/icons/onderneming.png" class="img-fluid" alt="Responsive image"></div>
-      {{onderneming}}</div>
-    </a>
-    <a href="/rekening" class="form-control preview">
-      <div class="scrolling-wrapper-flexbox">
-      <div class="card card7"><img src="static/icons/aandelen.png" class="img-fluid" alt="Responsive image"></div>
-      {{aandelen}}</div>
-    </a>
+        <div class="scrolling-wrapper-flexbox">
+        <div class="card card5"><img src="static/icons/grafieken.png" class="img-fluid" alt="Responsive image"></div>
+        {{grafieken}}</div>
+      </a>
 {%endblock%}

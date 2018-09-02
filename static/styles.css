@@ -339,3 +339,42 @@ p{margin-bottom:.3em;}
 .transparant {
     background-color: transparent;
 }
+.portfolios {
+    font-size: 20px;
+    padding-top: 4.5%;
+}
+.smallportfolio {
+    width: 22% !important;
+    padding: 0px;
+    border: 0px;
+}
+.percentportfolio {
+    width: 12% !important;
+    padding: 0px;
+    border: 0px;
+}
+.bigportfolio {
+    width: 33%;
+    height: 6%;
+    padding: 0px;
+}
+.smallfont {
+    font-size: 13px;
+}
+.thinportfolio {
+    height: 5%;
+}
+.smallupdate {
+    width: 0%;
+    margin: hidden;
+    border: hidden;
+}
+.maincard {
+    background-color: #ffc107;
+}
+.beleggingcard {
+    background-color: #2f64c7;
+}
+.incomecard {
+    background-color: #28a745;
+}
