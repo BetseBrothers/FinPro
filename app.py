@@ -520,4 +520,15 @@ def grafiek():
     db = db_connect('pythonsqlite.db')
     rows = db.execute("SELECT * FROM Transacties WHERE userid=? AND soort='Uitgave'", (session["user_id"],))
     uitgaven = rows.fetchall()
-    return render_template("grafiek.html", uitgaven=uitgaven)
+    # bereken totaal van inkomsten in huidige maand
+    inkomst = db.execute("SELECT * FROM Transacties WHERE userid=? and Soort=?",
+                        (session["user_id"], "Inkomst"))
+    ink = inkomst.fetchall()
+    # bereken totaal van uitgaven in huidige maand
+    uitgave = db.execute("SELECT * FROM Transacties WHERE userid=? and Soort=?",
+                          (session["user_id"], "Uitgave"))
+    uit = uitgave.fetchall()
+    hist = db.execute("SELECT * FROM Historiek WHERE userid=?",
+                          (session["user_id"],))
+    history = hist.fetchall()
+    return render_template("grafiek.html", uitgaven=uitgaven, ink=ink, uit=uit, date=time.strftime("%x"), history=history)
