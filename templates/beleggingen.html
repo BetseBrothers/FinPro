@@ -1,0 +1,75 @@
+{%extends "layoutHome.html"%}
+{%block homeBody%}
+<div class="container-fluid"></div>
+<div class="btn-group headerbudget" role="group" aria-label="Basic example">
+    <button type="button" class="hometext bigportfolio btn btn-success">Cash</button>
+    <button type="button" class="hometext inkomsthome smallportfolio btn">{{cash}}€</button>
+    <button type="button" class="percentportfolio btn">{% if totaaluitgaven > 0 %}{{ (cash / (totaalbeleggingen + cash) * 100) | int }}%{%else%}0%{% endif %}</button>
+    <button type="button" class="uitgavehome smallportfolio btn">{{totaaluitgaven}}€</button>
+    <button type="button" class="percentportfolio btn">{% if totaaluitgaven > 0 %}{{ (cash / totaaluitgaven * 100) | int }}%{%else%}0%{% endif %}</button>
+</div>
+<div class="btn-group headerbudget" role="group" aria-label="Basic example">
+    <div class="bigportfolio btn-group" role="group">
+        <button id="btnGroupDrop1" type="button" class="expensebudget btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Beleggingen
+        </button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="/verkoopbelegging">Verkoop beleggingen</a>
+        </div>
+    </div>
+    <button type="button" class="hometext smallportfolio btn">Waarde</button>
+    <button type="button" class="hometext percentportfolio btn">%</button>
+    <button type="button" class="hometext smallportfolio btn">Rend.</button>
+    <button type="button" class="hometext percentportfolio btn">Verk.</button>
+</div>
+</div>
+<div class="container-fluid">
+    {% for row in portfolios %}
+    {%set total = namespace(a=0)%}
+    {%set prijs = namespace(b=0)%}
+    {%set verkoop = namespace(c=0)%}
+    {% for belegging in beleggingen %}
+    {% if belegging[4] == row[1] %}
+    {%set total.a = total.a + belegging[3] %}
+    {%set prijs.b = prijs.b + belegging[2] %}
+    {%set verkoop.c = verkoop.c + belegging[6] %}
+    {% endif %}
+    {% endfor %}
+    <div class="btn-group headerbudget" role="group" aria-label="Basic example">
+        <button type="button" class="hometext bigportfolio btn btn-primary">{{row[1]}}</button>
+        <button type="button" class="hometext savingshome smallportfolio btn ">{{ total.a }}€</button>
+        <button type="button" class="savingshome percentportfolio btn ">{% if totaalbeleggingen > 0 %}{{ (total.a / totaalbeleggingen * 100) | int }}%{%else%}0%{% endif %}</button>
+        <button type="button" class="hometext inkomsthome smallportfolio btn ">{{ total.a - prijs.b + verkoop.c }}€</button>
+        <button type="button" class="uitgavehome percentportfolio btn ">{{verkoop.c}}</button>
+      </div>
+    {% for belegging in beleggingen %}
+    {% if belegging[4] == row[1] %}
+    <div class="btn-group headerbudget" role="group" aria-label="Basic example">
+        <div class="bigportfolio btn-group thinportfolio" role="group">
+                <button id="btnGroupDrop1" type="button" class="expensebudget btn btn-light dropdown-toggle dropdown-toggle-split smallfont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{belegging[1]}}
+                </button>
+                <div class="dropdown-menu addincomes" aria-labelledby="btnGroupDrop1">
+                        <form action="/beleggingen" method="post" class="dropdown-item addincomes" id="form">
+                            <input required class="smallupdate" name="naam" value="{{belegging[1]}}" type="text" id="input"/>
+                            <input autocomplete="off" required autofocus name="update" placeholder="Waarde" type="number" step="0.1" class="btn btn-success" id="input"/>
+                            <button type="submit" class="btn btn-warning">Update</button>
+                        </form>
+                </div>
+            </div>
+        <button type="button" class="hometext savingshome smallportfolio btn btn-light">{{ belegging[3] }}€</button>
+        <button type="button" class="savingshome percentportfolio btn btn-light">{% if total.a > 0 %}{{ (belegging[3] / total.a * 100) | int }}%{%else%}0%{% endif %}</button>
+        <button type="button" class="hometext inkomsthome smallportfolio btn btn-light">{{ belegging[3] - belegging[2] + belegging[6] }}€</button>
+        <button type="button" class="uitgavehome percentportfolio btn btn-light">{{belegging[6]}}€</button>
+        </div>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+<div class="btn-group headerbudget" role="group" aria-label="Basic example">
+    <button type="button" class="hometext bigportfolio btn btn-dark">Beleggingen</button>
+    <button type="button" class="hometext smallportfolio btn">{{totaalbeleggingen}}€</button>
+    <button type="button" class="percentportfolio btn">{% if (totaalbeleggingen + cash) > 0 %}{{ (totaalbeleggingen / (totaalbeleggingen + cash) * 100) | int }}%{%else%}0%{% endif %}</button>
+    <button type="button" class="hometext smallportfolio btn">{{totaalbeleggingen - totaalprijs + totaalverkocht}}€</button>
+    <button type="button" class="percentportfolio btn">{{totaalverkocht}}</button>
+</div>
+{%endblock%}

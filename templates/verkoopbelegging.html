@@ -1,0 +1,21 @@
+{%extends "layoutInput.html"%}
+{%block input%}
+<div class="container-fluid">
+<form action="/verkoopbelegging" method="post" id="boost">
+    <input name="bedrag" placeholder="Bedrag naar rekening" type="number" pattern="[0-9]*" step="any" required class="form-control form1"/>
+    <div class="cc-selector scrolling-wrapper-flexbox form1">
+            {%for row in rekeningen %}
+            <input id={{row[2]}} required type="radio" name="rekening" value={{row[2]}} />
+            <label class="drinkcard-cc card rekeningkiezer" for={{row[2]}}>{{row[2]}}</label>
+            {% endfor %}
+    </div>
+<input name="verkocht" placeholder="Verkochte waarde" type="number" pattern="[0-9]*" step="any" required class="form-control form1"/>
+    <div class="cc-selector scrolling-wrapper-flexbox form1">
+            {%for row in beleggingen %}
+            <input id={{row[1]}} required type="radio" name="belegging" value={{row[1]}} />
+            <label class="drinkcard-cc card portfolios rekeningkiezer" for={{row[1]}}>{{row[1]}}</label>
+            {% endfor %}
+    </div>
+    <button type="submit" class="form-control form1 add">Verkoop</button>
+</div>
+{%endblock%}

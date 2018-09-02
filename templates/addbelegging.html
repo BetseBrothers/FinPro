@@ -1,0 +1,33 @@
+{%extends "layoutInput.html"%}
+{%block input%}
+<div class="container-fluid">
+<form action="/addbelegging" method="post" id="boost">
+    <input name="Bedrag" placeholder="Bedrag van rekening" type="number" pattern="[0-9]*" step="any" required class="form-control form1"/>
+    <div class="cc-selector scrolling-wrapper-flexbox form1">
+            {%for row in rekeningen %}
+            <input id={{row[2]}} required type="radio" name="rekening" value={{row[2]}} />
+            <label class="drinkcard-cc card rekeningkiezer" for={{row[2]}}>{{row[2]}}</label>
+            {% endfor %}
+    </div>
+<input name="Waarde" placeholder="Waarde van belegging" type="number" pattern="[0-9]*" step="any" required class="form-control form1"/>
+    <div class="cc-selector scrolling-wrapper-flexbox form1">
+            {%for row in portfolios %}
+            <input id={{row[1]}} required type="radio" name="portfolios" value={{row[1]}} />
+            <label class="drinkcard-cc card portfolios Shmekkels" for={{row[1]}}>{{row[1]}}</label>
+            {% endfor %}
+    </div>
+    <div class="cc-selector scrolling-wrapper-flexbox form1">
+            <input id="nieuw" type="radio" name="belegging" value="nieuw" />
+            <label class="drinkcard-cc card portfolios Shmekkels" for="nieuw">nieuw</label>
+            {%for row in beleggingen %}
+            <input id={{row[1]}} required type="radio" name="belegging" value={{row[1]}} />
+            <label class="drinkcard-cc card portfolios rekeningkiezer" for={{row[1]}}>{{row[1]}}</label>
+            {% endfor %}
+    </div>
+    <input id="naam" name="naam" autocomplete="on" placeholder="Naam" type="text" class="form-control form1 naam"/>
+    <button type="submit" class="form-control form1 add">Voeg toe</button>
+</div>
+</div>
+<!-- App's own javascript(must be at bottom)-->
+<script src="/static/addbelegging.js"></script>
+{%endblock%}

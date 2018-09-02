@@ -1,0 +1,12 @@
+{%extends "layoutInput.html"%}
+{% block titleInput %}
+portfolio
+{%endblock%}
+{%block input%}
+<div class="container-fluid">
+<form action="/portfolio" method="post" class="center-block" id="form">
+    <input autocomplete="off" required autofocus name="naam" placeholder="Naam van portfolio" type="text" class="form-control" id="input"/>
+    <button type="submit" class="form-control">Nieuwe portfolio</button>
+</form>
+</div>
+{%endblock%}
