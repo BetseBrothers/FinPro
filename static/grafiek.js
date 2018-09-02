@@ -12,6 +12,17 @@ document.getElementById("title").onclick =function(){
         document.getElementById("test").style.display = "none";
     }
 };
+document.getElementById("inkomst").onclick =function(){
+    if (document.getElementById("inkomst-g").innerHTML == ""){
+        drawCat();
+    }
+    else if (document.getElementById("inkomst-g").style.display == "none"){
+        document.getElementById("inkomst-g").style.display = "block";
+    }
+    else {
+        document.getElementById("inkomst-g").style.display = "none";
+    }
+};
 document.getElementById("cash").onclick =function(){
     if (document.getElementById("cash-graph").innerHTML == ""){
         drawCash();
@@ -79,6 +90,31 @@ function drawChart(){
     ]);
     var options = {'backgroundColor':"#ffffff"};
     var chart = new google.visualization.PieChart(document.getElementById('test'));
+    chart.draw(data, options);
+};
+function drawCat(){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Categorie');
+    data.addColumn('number', 'bedrag');
+    data.addRows([
+        ['loon', parseFloat(loon)],
+        ['bonus', parseFloat(bonus)],
+        ['geschenken', parseFloat(geschenken)],
+        ['zakgeld', parseFloat(zakgeld)],
+        ['erfenis', parseFloat(erfenis)],
+        ['klusjes', parseFloat(klusjes)],
+        ['terugbetaling', parseFloat(terugbetaling)],
+        ['beurs', parseFloat(beurs)],
+        ['ziekteverzekering', parseFloat(ziekteverzekering)],
+        ['loon eigen onderneming', parseFloat(loon3)],
+        ['dividend eigen onderneming', parseFloat(dividend2)],
+        ['huur', parseFloat(huur)],
+        ['dividend', parseFloat(dividend)],
+        ['interest', parseFloat(interest1)],
+        ['andere', parseFloat(andere)]
+    ]);
+    var options = {'backgroundColor':"#ffffff"};
+    var chart = new google.visualization.PieChart(document.getElementById('inkomst-g'));
     chart.draw(data, options);
 };
 function drawCash(){
